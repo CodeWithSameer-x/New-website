@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Institute of Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="VIS Logo" class="logo">
+                <h1>Vision Institute of Science</h1>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="courses">Courses</a></li>
+                    <li><a href="#" class="nav-link" data-page="join">Join</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    <li><button id="theme-toggle"><i class="fas fa-moon"></i></button></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active-page hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Learn with Confidence</h2>
+                    <p>Quality science education for classes 9-12 and NEET preparation with expert faculty and proven methodology.</p>
+                    <a href="#" class="btn nav-link" data-page="join">Enroll Now</a>
+                </div>
+                <div class="hero-image">
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <h2>About Vision Institute of Science</h2>
+                <p class="about-intro">Established in 2021 and located in Dharmabad, District Nanded, Maharashtra, Vision Institute of Science (VIS) is dedicated to providing high-quality science education. We offer specialized coaching for students of Class 9 & 10 (Science Foundation) and Class 11 & 12 (Biology & Chemistry), along with targeted preparation for competitive exams like NEET.</p>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Why Choose Us?</h3>
+                        <ul>
+                            <li>Expert faculty with 4+ years of teaching experience</li>
+                            <li>Handwritten notes and personal mentorship</li>
+                            <li>Result-oriented methodology to ensure academic excellence</li>
+                            <li>Strong focus on conceptual clarity and problem-solving skills</li>
+                            <li>Support for NEET preparation with extra Chemistry classes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3><i class="fas fa-user-tie"></i> Director & Founder</h3>
+                        <p>Mr. Mohammad Sultan, B.Sc. in Computer Science from Lal Bahadur Shastri Mahavidyalaya, Dharmabad. With over 4 years of teaching experience, he has successfully guided numerous students towards academic excellence and competitive exam success.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                        <p>To be the leading institute in science education by empowering students with knowledge, discipline, and confidence to excel in academics and life.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                        <p>To provide top-quality education through innovative teaching techniques, comprehensive notes, and a nurturing learning environment that prepares students for board exams and competitive challenges.</p>
+                    </div>
+                    
+                    <div class="about-card full-width">
+                        <h3><i class="fas fa-book-open"></i> What We Provide</h3>
+                        <ul class="two-columns">
+                            <li>Detailed handwritten notes for all subjects</li>
+                            <li>Chapter-wise tests and regular assessments</li>
+                            <li>Doubt-solving sessions and revision classes</li>
+                            <li>Motivational guidance and personal attention</li>
+                            <li>Interactive learning with real-life examples</li>
+                            <li>Complete NEET Chemistry preparation with concept building</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Page -->
+        <section id="courses" class="page">
+            <div class="container">
+                <h2>Our Courses</h2>
+                <p class="courses-intro">We offer comprehensive science education programs tailored for different academic levels and competitive exam preparation.</p>
+                
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="school">School (9-10)</button>
+                        <button class="tab-button" data-tab="higher-secondary">Higher Secondary (11-12)</button>
+                        <button class="tab-button" data-tab="neet">NEET Preparation</button>
+                    </div>
+                    
+                    <div class="tab-contents">
+                        <!-- School Courses (9-10) -->
+                        <div id="school-tab" class="tab-content active">
+                            <div class="course-cards">
+                                <div class="course-card">
+                                    <h3>Class 9 Science</h3>
+                                    <p>Comprehensive foundation in Physics, Chemistry and Biology with NCERT syllabus coverage and practical applications.</p>
+                                    <button class="btn know-more" data-course="school">Know More</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Class 10 Science</h3>
+                                    <p>Complete preparation for board exams with concept building, numerical practice and revision strategies.</p>
+                                    <button class="btn know-more" data-course="school">Know More</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Higher Secondary (11-12) -->
+                        <div id="higher-secondary-tab" class="tab-content">
+                            <div class="course-cards">
+                                <div class="course-card">
+                                    <h3>Class 11 Biology</h3>
+                                    <p>Detailed study of Botany and Zoology with diagrams, terminology and conceptual understanding.</p>
+                                    <button class="btn know-more" data-course="higher-secondary">Know More</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Class 11 Chemistry</h3>
+                                    <p>Physical, Organic and Inorganic Chemistry with numerical problem solving techniques.</p>
+                                    <button class="btn know-more" data-course="higher-secondary">Know More</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Class 12 Biology</h3>
+                                    <p>Advanced topics in Genetics, Evolution, Biotechnology and Human Physiology for board exams.</p>
+                                    <button class="btn know-more" data-course="higher-secondary">Know More</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Class 12 Chemistry</h3>
+                                    <p>Complete syllabus coverage with emphasis on organic reactions, coordination compounds and electrochemistry.</p>
+                                    <button class="btn know-more" data-course="higher-secondary">Know More</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NEET Preparation -->
+                        <div id="neet-tab" class="tab-content">
+                            <div class="course-cards">
+                                <div class="course-card">
+                                    <h3>NEET Chemistry</h3>
+                                    <p>Specialized coaching for NEET with focus on Physical, Organic and Inorganic Chemistry as per latest syllabus.</p>
+                                    <button class="btn know-more" data-course="neet">Know More</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Page -->
+        <section id="join" class="page">
+            <div class="container">
+                <h2>Join Vision Institute of Science</h2>
+                <div class="join-container">
+                    <div class="join-info">
+                        <h3>Admission Process</h3>
+                        <ol>
+                            <li>Visit our institute for counseling session</li>
+                            <li>Take a diagnostic test (for class 11-12 students)</li>
+                            <li>Complete registration with required documents</li>
+                            <li>Pay fees and receive study material</li>
+                        </ol>
+                        
+                        <h3>Fee Structure</h3>
+                        <div class="fee-structure">
+                            <div class="fee-card">
+                                <h4>Class 9-10</h4>
+                                <p>₹2,500/month</p>
+                            </div>
+                            <div class="fee-card">
+                                <h4>Class 11-12</h4>
+                                <p>₹3,000/month</p>
+                            </div>
+                            <div class="fee-card">
+                                <h4>NEET Chemistry</h4>
+                                <p>₹3,500/month</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Batch Timings</h3>
+                        <div class="timings">
+                            <p><strong>Morning Batch:</strong> 7:00 AM - 9:00 AM</p>
+                            <p><strong>Evening Batch:</strong> 5:00 PM - 7:00 PM</p>
+                            <p><i>Weekend special classes available</i></p>
+                        </div>
+                    </div>
+                    
+                    <div class="join-form">
+                        <h3>Register Interest</h3>
+                        <form id="registration-form">
+                            <div class="form-group">
+                                <label for="name">Student Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="class">Class</label>
+                                <select id="class" name="class" required>
+                                    <option value="">Select Class</option>
+                                    <option value="9">Class 9</option>
+                                    <option value="10">Class 10</option>
+                                    <option value="11">Class 11</option>
+                                    <option value="12">Class 12</option>
+                                    <option value="neet">NEET Preparation</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email (optional)</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <button type="submit" class="btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Address</h3>
+                            <p>Near Bus Stand, Main Road<br>Dharmabad, Nanded<br>Maharashtra - 431809</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>Phone</h3>
+                            <p>+91 9876543210</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <p>info@visioninstitute.edu</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Working Hours</h3>
+                            <p>Monday - Saturday<br>7:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Send us a Message</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="contact-name">Your Name</label>
+                                <input type="text" id="contact-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">Subject</label>
+                                <input type="text" id="contact-subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Message</label>
+                                <textarea id="contact-message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Course Modal -->
+    <div id="course-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-steps">
+                <!-- Class Selection Step -->
+                <div id="class-step" class="modal-step active-step">
+                    <h3>Select Class</h3>
+                    <select id="class-select">
+                        <option value="">Select Class</option>
+                    </select>
+                    <button id="next-subject-btn" class="btn" disabled>Next</button>
+                </div>
+                
+                <!-- Subject Selection Step -->
+                <div id="subject-step" class="modal-step">
+                    <button id="back-class-btn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h3>Select Subject</h3>
+                    <select id="subject-select">
+                        <option value="">Select Subject</option>
+                    </select>
+                    <button id="next-chapter-btn" class="btn" disabled>Next</button>
+                </div>
+                
+                <!-- Chapter Selection Step -->
+                <div id="chapter-step" class="modal-step">
+                    <button id="back-subject-btn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h3>Select Chapter</h3>
+                    <select id="chapter-select">
+                        <option value="">Select Chapter</option>
+                    </select>
+                    <button id="view-chapter-btn" class="btn" disabled>View Chapter</button>
+                </div>
+                
+                <!-- Chapter Content Step -->
+                <div id="content-step" class="modal-step">
+                    <h3 id="chapter-title">Chapter Title</h3>
+                    <div class="chapter-content">
+                        <div class="chapter-overview">
+                            <h4>Overview</h4>
+                            <p id="chapter-overview">Chapter overview will appear here...</p>
+                        </div>
+                        <div class="chapter-notes">
+                            <h4>Key Notes</h4>
+                            <div id="notes-content">
+                                <p>Detailed notes will appear here...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="got-it-btn" class="btn">Got It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vision Institute of Science</h3>
+                    <p>Providing quality science education since 2021 with expert faculty and proven methodology.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                        <li><a href="#" class="nav-link" data-page="courses">Courses</a></li>
+                        <li><a href="#" class="nav-link" data-page="join">Join</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dharmabad, Nanded, Maharashtra</p>
+                    <p><i class="fas fa-phone-alt"></i> +91 9325642243</p>
+                    <p><i class="fas fa-envelope"></i> info@visioninstitute.edu</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vision Institute of Science. All Rights Reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
