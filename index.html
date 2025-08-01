@@ -3,2133 +3,730 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vision Institute of Science - Premier Science Education in Dharmabad</title>
-    <meta name="description" content="Best science coaching for classes 9-12 and NEET preparation in Dharmabad, Nanded. 95% success rate with expert faculty.">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Vision Institute of Science">
-    <meta property="og:description" content="Premier science coaching for classes 9-12 and NEET preparation in Dharmabad, Nanded.">
-    <meta property="og:image" content="https://example.com/images/hero.jpg">
-    <meta property="og:url" content="https://visioninstitute.com">
-    
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "Vision Institute of Science",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Dharmabad, Nanded",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
-      }
-    }
-    </script>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
+    <title>Vision Institute of Science - Learn with Confidence</title>
+    <meta name="description" content="Vision Institute of Science - Excellence in Science Education Since 2021. NEET, JEE, and Board exam preparation with expert faculty.">
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="light-mode">
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-spinner">
-            <div class="logo-circle pulse">
-                <span>VIS</span>
-            </div>
-            <p>Loading Vision Institute</p>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#home">
-                <div class="logo-container">
-                    <div class="logo-circle">
-                        <span>VIS</span>
-                    </div>
-                    <div class="brand-text">
-                        <h1>Vision Institute of Science</h1>
-                        <p class="tagline">Learn with Confidence</p>
+<body>
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <div class="logo-icon">V</div>
+                    <div class="logo-text">
+                        <h1>Vision</h1>
+                        <p>Institute of Science</p>
                     </div>
                 </div>
-            </a>
+            </div>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#courses" class="nav-link">Courses</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#faculty" class="nav-link">Faculty</a>
+                <a href="#success" class="nav-link">Success Stories</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#join" class="nav-link join-btn">Join Now</a>
+            </div>
             
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#home"><i class="fas fa-home"></i> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about"><i class="fas fa-info-circle"></i> About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#courses"><i class="fas fa-book"></i> Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#success"><i class="fas fa-trophy"></i> Success</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#faculty"><i class="fas fa-chalkboard-teacher"></i> Faculty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-                    </li>
-                </ul>
-                
-                <div class="navbar-actions">
-                    <button id="themeToggle" class="btn btn-outline-secondary me-2" aria-label="Toggle light/dark theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <a href="#contact" class="btn btn-primary cta-btn">
-                        <i class="fas fa-arrow-right"></i> Enroll Now
-                    </a>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="hero-content">
-                            <h2 class="display-4 fw-bold mb-4">
-                                Empowering Future <span class="text-primary">Scientists & Doctors</span>
-                            </h2>
-                            <p class="lead mb-4">
-                                Premier science education for classes 9-12 and specialized NEET preparation in Dharmabad, Nanded
-                            </p>
-                            <div class="hero-buttons mb-4">
-                                <a href="#courses" class="btn btn-primary btn-lg me-3">
-                                    <i class="fas fa-book-open"></i> Explore Courses
-                                </a>
-                                <a href="#contact" class="btn btn-outline-primary btn-lg">
-                                    <i class="fas fa-phone-alt"></i> Call for Inquiry
-                                </a>
-                            </div>
-                            <div class="hero-features">
-                                <div class="feature-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>95% Success Rate</span>
-                                </div>
-                                <div class="feature-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Expert Faculty</span>
-                                </div>
-                                <div class="feature-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Personal Attention</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="hero-image">
-                            <img src="hero.jpg" alt="Students conducting science experiment" class="img-fluid rounded-4 shadow-lg">
-                            <div class="image-badge">
-                                <div class="badge-content">
-                                    <span class="h3 mb-0">4+</span>
-                                    <small>Years Experience</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#courses" class="mobile-nav-link">Courses</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#faculty" class="mobile-nav-link">Faculty</a>
+        <a href="#success" class="mobile-nav-link">Success Stories</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="#join" class="mobile-nav-link">Join Now</a>
+    </div>
 
-        <!-- About Section -->
-        <section id="about" class="about-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">About Vision Institute</h2>
-                    <p class="lead">Dedicated to excellence in science education with personalized attention</p>
-                </div>
-                
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="about-content">
-                            <h3 class="h2 mb-4">Building Strong Scientific Foundation</h3>
-                            <p class="lead mb-4">
-                                At Vision Institute of Science, we believe in nurturing young minds with comprehensive science education that goes beyond textbooks.
-                            </p>
-                            <div class="about-features">
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-microscope"></i>
-                                    </div>
-                                    <div class="feature-content">
-                                        <h5>Practical Learning</h5>
-                                        <p>Hands-on experiments and real-world applications to enhance understanding</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                    <div class="feature-content">
-                                        <h5>Small Batch Size</h5>
-                                        <p>Personal attention with maximum 20 students per batch for better learning</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-chart-line"></i>
-                                    </div>
-                                    <div class="feature-content">
-                                        <h5>Regular Assessment</h5>
-                                        <p>Continuous evaluation and feedback to track student progress</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-image">
-                            <img src="about.jpg" alt="Vision Institute classroom" class="img-fluid rounded-4 shadow-lg">
-                        </div>
-                    </div>
-                </div>
+    <!-- Welcome Popup -->
+    <div class="welcome-popup" id="welcomePopup">
+        <div class="popup-content">
+            <button class="popup-close" id="welcomeClose">&times;</button>
+            <div class="popup-icon">
+                <i class="fas fa-microscope"></i>
             </div>
-        </section>
+            <h2>Welcome to Vision Institute!</h2>
+            <p>Learn with confidence and achieve your dreams in science education.</p>
+            <button class="btn btn-primary" id="getStarted">Get Started</button>
+        </div>
+    </div>
 
-        <!-- Stats Section -->
-        <section class="stats-section py-5">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <h3 class="stat-number">150+</h3>
-                            <p class="stat-label">Students Taught</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <h3 class="stat-number">95%</h3>
-                            <p class="stat-label">Success Rate</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <h3 class="stat-number">1000+</h3>
-                            <p class="stat-label">Pages of Notes</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <h3 class="stat-number">5000+</h3>
-                            <p class="stat-label">Teaching Hours</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section id="courses" class="courses-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Our Courses</h2>
-                    <p class="lead">Comprehensive science education for academic and competitive success</p>
-                </div>
-                
-                <!-- Course Cards -->
-                <div class="row g-4 mb-5">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="course-card h-100" data-course="neet" tabindex="0">
-                            <div class="course-icon">
-                                <i class="fas fa-user-md"></i>
-                            </div>
-                            <h4>NEET/JEE Preparation</h4>
-                            <p>Specialized coaching for medical and engineering entrance exams with 95% success rate</p>
-                            <button class="btn btn-outline-primary know-more-btn">
-                                Know More <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="course-card h-100" data-course="11-12" tabindex="0">
-                            <div class="course-icon">
-                                <i class="fas fa-flask"></i>
-                            </div>
-                            <h4>Class 11 & 12</h4>
-                            <p>Complete board exam preparation with concept clarity and 90%+ success rate</p>
-                            <button class="btn btn-outline-primary know-more-btn">
-                                Know More <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="course-card h-100" data-course="9-10" tabindex="0">
-                            <div class="course-icon">
-                                <i class="fas fa-atom"></i>
-                            </div>
-                            <h4>Class 9 & 10</h4>
-                            <p>Strong foundation building for board exams with focus on concept clarity</p>
-                            <button class="btn btn-outline-primary know-more-btn">
-                                Know More <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course Details Section -->
-                <div id="courseDetails" class="course-details-section" style="display: none;">
-                    <div class="course-details-card">
-                        <div class="course-details-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="mb-1" id="courseTitle">Course Details</h4>
-                                    <p class="text-muted mb-0" id="courseDescription"></p>
-                                </div>
-                                <button class="btn btn-outline-light btn-sm" id="closeCourseDetails" aria-label="Close course details">
-                                    <i class="fas fa-times"></i> Close
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="course-details-body">
-                            <div class="row g-4">
-                                <!-- Course Overview -->
-                                <div class="col-lg-4">
-                                    <div class="course-overview">
-                                        <h5 class="section-title">
-                                            <i class="fas fa-info-circle me-2"></i>Course Overview
-                                        </h5>
-                                        
-                                        <div class="overview-card">
-                                            <div class="overview-item">
-                                                <div class="overview-icon">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                </div>
-                                                <div class="overview-content">
-                                                    <strong>Duration</strong>
-                                                    <span id="courseDuration"></span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="overview-item">
-                                                <div class="overview-icon">
-                                                    <i class="fas fa-book-open"></i>
-                                                </div>
-                                                <div class="overview-content">
-                                                    <strong>Subjects</strong>
-                                                    <span id="courseSubjects"></span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="overview-item">
-                                                <div class="overview-icon">
-                                                    <i class="fas fa-users"></i>
-                                                </div>
-                                                <div class="overview-content">
-                                                    <strong>Batch Size</strong>
-                                                    <span>15-20 Students</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Enroll CTA -->
-                                        <div class="course-cta mt-4">
-                                            <a href="#contact" class="btn btn-primary w-100">
-                                                <i class="fas fa-user-plus"></i> Enroll Now
-                                            </a>
-                                            <p class="text-center mt-2 small text-muted">
-                                                Free demo class available
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Detailed Syllabus -->
-                                <div class="col-lg-8">
-                                    <div class="syllabus-section">
-                                        <h5 class="section-title">
-                                            <i class="fas fa-list-alt me-2"></i>Detailed Chapter-wise Syllabus
-                                        </h5>
-                                        
-                                        <div class="syllabus-accordion">
-                                            <div class="accordion" id="syllabusAccordion">
-                                                <!-- Dynamic content will be loaded here -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Success Stories Section -->
-        <section id="success" class="success-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Success Stories</h2>
-                    <p class="lead">Our students' achievements inspire us every day</p>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="success-card">
-                            <div class="success-avatar">
-                                <img src="anita.jpg" alt="Anita Sharma, NEET topper" class="rounded-circle">
-                            </div>
-                            <div class="success-content">
-                                <h5>Anita Sharma</h5>
-                                <p class="success-achievement">NEET 2023 - AIR 450</p>
-                                <p class="success-quote">"Vision Institute's personalized attention and excellent teaching methods helped me achieve my dream of becoming a doctor."</p>
-                                <div class="success-college">
-                                    <strong>AIIMS, New Delhi</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="success-card">
-                            <div class="success-avatar">
-                                <img src="rahul.jpg" alt="Rahul Kumar, JEE topper" class="rounded-circle">
-                            </div>
-                            <div class="success-content">
-                                <h5>Rahul Kumar</h5>
-                                <p class="success-achievement">JEE Main 2023 - 99.2%ile</p>
-                                <p class="success-quote">"The comprehensive study material and regular mock tests at Vision Institute prepared me well for JEE."</p>
-                                <div class="success-college">
-                                    <strong>IIT Bombay</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="success-card">
-                            <div class="success-avatar">
-                                <img src="priya.jpg" alt="Priya Gupta, Class 12 topper" class="rounded-circle">
-                            </div>
-                            <div class="success-content">
-                                <h5>Priya Gupta</h5>
-                                <p class="success-achievement">Class 12 - 96.8%</p>
-                                <p class="success-quote">"Thanks to Vision Institute, I scored excellent marks in my board exams and got admission in my dream college."</p>
-                                <div class="success-college">
-                                    <strong>Delhi University</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Faculty Section -->
-        <section id="faculty" class="faculty-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Our Expert Faculty</h2>
-                    <p class="lead">Experienced educators dedicated to your success</p>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="faculty-card">
-                            <div class="faculty-image">
-                                <img src="suresh.jpg" alt="Dr. Suresh Patil teaching physics" class="img-fluid">
-                            </div>
-                            <div class="faculty-content">
-                                <h5>Dr. Suresh Patil</h5>
-                                <p class="faculty-position">Physics & Mathematics</p>
-                                <p class="faculty-qualification">M.Sc., Ph.D. in Physics</p>
-                                <p class="faculty-experience">12+ Years Experience</p>
-                                <p class="faculty-description">Specializes in making complex physics concepts simple and engaging for students.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="faculty-card">
-                            <div class="faculty-image">
-                                <img src="meera.jpg" alt="Dr. Meera Joshi teaching chemistry" class="img-fluid">
-                            </div>
-                            <div class="faculty-content">
-                                <h5>Dr. Meera Joshi</h5>
-                                <p class="faculty-position">Chemistry</p>
-                                <p class="faculty-qualification">M.Sc., Ph.D. in Chemistry</p>
-                                <p class="faculty-experience">10+ Years Experience</p>
-                                <p class="faculty-description">Expert in organic and inorganic chemistry with excellent track record in NEET preparation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="faculty-card">
-                            <div class="faculty-image">
-                                <img src="rajesh.jpg" alt="Prof. Rajesh Sharma teaching biology" class="img-fluid">
-                            </div>
-                            <div class="faculty-content">
-                                <h5>Prof. Rajesh Sharma</h5>
-                                <p class="faculty-position">Biology</p>
-                                <p class="faculty-qualification">M.Sc. in Botany & Zoology</p>
-                                <p class="faculty-experience">8+ Years Experience</p>
-                                <p class="faculty-description">Passionate biology teacher with deep knowledge of NEET syllabus and examination patterns.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Get In Touch</h2>
-                    <p class="lead">Ready to start your journey? Contact us today!</p>
-                </div>
-                
-                <div class="row g-5">
-                    <div class="col-lg-6">
-                        <div class="contact-info">
-                            <h4 class="mb-4">Contact Information</h4>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Address</h6>
-                                    <p>Vision Institute of Science<br>Dharmabad, Nanded, Maharashtra</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Phone</h6>
-                                    <p>+91 98765 43210</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Email</h6>
-                                    <p>contact@visioninstitute.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Office Hours</h6>
-                                    <p>Monday - Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="contact-form-container">
-                            <h4 class="mb-4">Send us a Message</h4>
-                            <div id="messageAlert" class="alert alert-success d-none" role="alert">
-                                <i class="fas fa-check-circle me-2"></i>
-                                <span id="alertMessage">Your message has been sent successfully!</span>
-                            </div>
-                            <form method="POST" action="/contact" id="contactForm" class="contact-form">
-                                <!-- Uncomment if backend supports CSRF -->
-                                <!-- <input type="hidden" name="csrf_token" value="YOUR_CSRF_TOKEN"> -->
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                                            <label for="name">Your Name *</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
-                                            <label for="email">Your Email *</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone">
-                                            <label for="phone">Your Phone</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="course" name="course">
-                                                <option value="">Select Course</option>
-                                                <option value="NEET/JEE Preparation">NEET/JEE Preparation</option>
-                                                <option value="Class 11 & 12">Class 11 & 12</option>
-                                                <option value="Class 9 & 10">Class 9 & 10</option>
-                                            </select>
-                                            <label for="course">Interested Course</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 120px" required></textarea>
-                                            <label for="message">Your Message *</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
-                                            <i class="fas fa-paper-plane"></i> Send Message
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="footer-brand">
-                        <div class="logo-container mb-3">
-                            <div class="logo-circle small">
-                                <span>VIS</span>
-                            </div>
-                            <div class="brand-text">
-                                <h5 class="text-white">Vision Institute of Science</h5>
-                                <p class="text-muted small">Learn with Confidence</p>
-                            </div>
-                        </div>
-                        <p class="text-muted">Empowering students with quality science education and personalized attention for academic excellence.</p>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="text-white mb-3">Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#courses">Courses</a></li>
-                        <li><a href="#success">Success Stories</a></li>
-                        <li><a href="#faculty">Faculty</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="text-white mb-3">Courses</h6>
-                    <ul class="footer-links">
-                        <li><a href="#courses">NEET Preparation</a></li>
-                        <li><a href="#courses">JEE Preparation</a></li>
-                        <li><a href="#courses">Class 11 & 12</a></li>
-                        <li><a href="#courses">Class 9 & 10</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="text-white mb-3">Contact Info</h6>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt me-2"></i>Dharmabad, Nanded, Maharashtra</p>
-                        <p><i class="fas fa-envelope me-2"></i>contact@visioninstitute.com</p>
-                        <p><i class="fas fa-phone me-2"></i>+91 98765 43210</p>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="text-muted mb-0">&copy; 2024 Vision Institute of Science. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="text-muted mb-0">Made with ❤️ for quality education</p>
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Learn with Confidence</h1>
+                <p>Master Science • Excel in Exams • Build Your Future</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showSection('courses')">Explore Courses</button>
+                    <button class="btn btn-outline" onclick="showSection('join')">Join Now</button>
                 </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
-</body>
-                        </html>                                <div class="feature-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>95% Success Rate</span>
-                                </div>
-                                <div class="feature-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Expert Faculty</span>
-                                </div>
-                                <div class="feature-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Personal Attention</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="hero-image">
-                            <img src="https://via.placeholder.com/600x400/4361ee/ffffff?text=Science+Education" alt="Students learning science" class="img-fluid rounded-4 shadow-lg">
-                            <div class="image-badge">
-                                <div class="badge-content">
-                                    <span class="h3 mb-0">4+</span>
-                                    <small>Years Experience</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section py-5">
+        <div class="features">
             <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">About Vision Institute</h2>
-                    <p class="lead">Dedicated to excellence in science education with personalized attention</p>
-                </div>
+                <h2>Why Choose Vision Institute?</h2>
+                <p class="subtitle">Excellence in Science Education Since 2021</p>
                 
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="about-content">
-                            <h3 class="h2 mb-4">Building Strong Scientific Foundation</h3>
-                            <p class="lead mb-4">
-                                At Vision Institute of Science, we believe in nurturing young minds with comprehensive science education that goes beyond textbooks.
-                            </p>
-                            <div class="about-features">
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-microscope"></i>
-                                    </div>
-                                    <div class="feature-content">
-                                        <h5>Practical Learning</h5>
-                                        <p>Hands-on experiments and real-world applications to enhance understanding</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                    <div class="feature-content">
-                                        <h5>Small Batch Size</h5>
-                                        <p>Personal attention with maximum 20 students per batch for better learning</p>
-                                    </div>
-                                </div>
-                                <div class="feature-item">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-chart-line"></i>
-                                    </div>
-                                    <div class="feature-content">
-                                        <h5>Regular Assessment</h5>
-                                        <p>Continuous evaluation and feedback to track student progress</p>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon green">
+                            <i class="fas fa-trophy"></i>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-image">
-                            <img src="https://via.placeholder.com/600x500/4361ee/ffffff?text=About+Us" alt="About Vision Institute" class="img-fluid rounded-4 shadow-lg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats-section py-5">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <h3 class="stat-number">150+</h3>
-                            <p class="stat-label">Students Taught</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <h3 class="stat-number">95%</h3>
-                            <p class="stat-label">Success Rate</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <h3 class="stat-number">1000+</h3>
-                            <p class="stat-label">Pages of Notes</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="stat-card text-center">
-                            <div class="stat-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <h3 class="stat-number">5000+</h3>
-                            <p class="stat-label">Teaching Hours</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section id="courses" class="courses-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Our Courses</h2>
-                    <p class="lead">Comprehensive science education for academic and competitive success</p>
-                </div>
-                
-                <!-- Course Cards -->
-                <div class="row g-4 mb-5">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="course-card h-100" data-course="neet">
-                            <div class="course-icon">
-                                <i class="fas fa-user-md"></i>
-                            </div>
-                            <h4>NEET/JEE Preparation</h4>
-                            <p>Specialized coaching for medical and engineering entrance exams with 95% success rate</p>
-                            <button class="btn btn-outline-primary know-more-btn">
-                                Know More <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
+                        <h3>Proven Results</h3>
+                        <p>100% success rate with top marks in board exams and competitive tests</p>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6">
-                        <div class="course-card h-100" data-course="11-12">
-                            <div class="course-icon">
-                                <i class="fas fa-flask"></i>
-                            </div>
-                            <h4>Class 11 & 12</h4>
-                            <p>Complete board exam preparation with concept clarity and 90%+ success rate</p>
-                            <button class="btn btn-outline-primary know-more-btn">
-                                Know More <i class="fas fa-arrow-right"></i>
-                            </button>
+                    <div class="feature-card">
+                        <div class="feature-icon blue">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
+                        <h3>Expert Faculty</h3>
+                        <p>Experienced teachers with advanced degrees and proven teaching methods</p>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6">
-                        <div class="course-card h-100" data-course="9-10">
-                            <div class="course-icon">
-                                <i class="fas fa-atom"></i>
-                            </div>
-                            <h4>Class 9 & 10</h4>
-                            <p>Strong foundation building for board exams with focus on concept clarity</p>
-                            <button class="btn btn-outline-primary know-more-btn">
-                                Know More <i class="fas fa-arrow-right"></i>
-                            </button>
+                    <div class="feature-card">
+                        <div class="feature-icon red">
+                            <i class="fas fa-flask"></i>
                         </div>
+                        <h3>Modern Labs</h3>
+                        <p>State-of-the-art laboratory facilities for hands-on learning experience</p>
                     </div>
-                </div>
-
-                <!-- Course Details Section -->
-                <div id="courseDetails" class="course-details-section" style="display: none;">
-                    <div class="course-details-card">
-                        <div class="course-details-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="mb-1" id="courseTitle">Course Details</h4>
-                                    <p class="text-muted mb-0" id="courseDescription"></p>
-                                </div>
-                                <button class="btn btn-outline-light btn-sm" id="closeCourseDetails">
-                                    <i class="fas fa-times"></i> Close
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="course-details-body">
-                            <div class="row g-4">
-                                <!-- Course Overview -->
-                                <div class="col-lg-4">
-                                    <div class="course-overview">
-                                        <h5 class="section-title">
-                                            <i class="fas fa-info-circle me-2"></i>Course Overview
-                                        </h5>
-                                        
-                                        <div class="overview-card">
-                                            <div class="overview-item">
-                                                <div class="overview-icon">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                </div>
-                                                <div class="overview-content">
-                                                    <strong>Duration</strong>
-                                                    <span id="courseDuration"></span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="overview-item">
-                                                <div class="overview-icon">
-                                                    <i class="fas fa-book-open"></i>
-                                                </div>
-                                                <div class="overview-content">
-                                                    <strong>Subjects</strong>
-                                                    <span id="courseSubjects"></span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="overview-item">
-                                                <div class="overview-icon">
-                                                    <i class="fas fa-users"></i>
-                                                </div>
-                                                <div class="overview-content">
-                                                    <strong>Batch Size</strong>
-                                                    <span>15-20 Students</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Enroll CTA -->
-                                        <div class="course-cta mt-4">
-                                            <a href="#contact" class="btn btn-primary w-100">
-                                                <i class="fas fa-user-plus"></i> Enroll Now
-                                            </a>
-                                            <p class="text-center mt-2 small text-muted">
-                                                Free demo class available
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Detailed Syllabus -->
-                                <div class="col-lg-8">
-                                    <div class="syllabus-section">
-                                        <h5 class="section-title">
-                                            <i class="fas fa-list-alt me-2"></i>Detailed Chapter-wise Syllabus
-                                        </h5>
-                                        
-                                        <div class="syllabus-accordion">
-                                            <div class="accordion" id="syllabusAccordion">
-                                                <!-- Dynamic content will be loaded here -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Success Stories Section -->
-        <section id="success" class="success-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Success Stories</h2>
-                    <p class="lead">Our students' achievements inspire us every day</p>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="success-card">
-                            <div class="success-avatar">
-                                <img src="https://via.placeholder.com/80x80/4361ee/ffffff?text=AS" alt="Anita Sharma" class="rounded-circle">
-                            </div>
-                            <div class="success-content">
-                                <h5>Anita Sharma</h5>
-                                <p class="success-achievement">NEET 2023 - AIR 450</p>
-                                <p class="success-quote">"Vision Institute's personalized attention and excellent teaching methods helped me achieve my dream of becoming a doctor."</p>
-                                <div class="success-college">
-                                    <strong>AIIMS, New Delhi</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="success-card">
-                            <div class="success-avatar">
-                                <img src="https://via.placeholder.com/80x80/4361ee/ffffff?text=RK" alt="Rahul Kumar" class="rounded-circle">
-                            </div>
-                            <div class="success-content">
-                                <h5>Rahul Kumar</h5>
-                                <p class="success-achievement">JEE Main 2023 - 99.2%ile</p>
-                                <p class="success-quote">"The comprehensive study material and regular mock tests at Vision Institute prepared me well for JEE."</p>
-                                <div class="success-college">
-                                    <strong>IIT Bombay</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="success-card">
-                            <div class="success-avatar">
-                                <img src="https://via.placeholder.com/80x80/4361ee/ffffff?text=PG" alt="Priya Gupta" class="rounded-circle">
-                            </div>
-                            <div class="success-content">
-                                <h5>Priya Gupta</h5>
-                                <p class="success-achievement">Class 12 - 96.8%</p>
-                                <p class="success-quote">"Thanks to Vision Institute, I scored excellent marks in my board exams and got admission in my dream college."</p>
-                                <div class="success-college">
-                                    <strong>Delhi University</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Faculty Section -->
-        <section id="faculty" class="faculty-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Our Expert Faculty</h2>
-                    <p class="lead">Experienced educators dedicated to your success</p>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="faculty-card">
-                            <div class="faculty-image">
-                                <img src="https://via.placeholder.com/200x200/4361ee/ffffff?text=Dr.+S" alt="Dr. Suresh Patil" class="img-fluid">
-                            </div>
-                            <div class="faculty-content">
-                                <h5>Dr. Suresh Patil</h5>
-                                <p class="faculty-position">Physics & Mathematics</p>
-                                <p class="faculty-qualification">M.Sc., Ph.D. in Physics</p>
-                                <p class="faculty-experience">12+ Years Experience</p>
-                                <p class="faculty-description">Specializes in making complex physics concepts simple and engaging for students.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="faculty-card">
-                            <div class="faculty-image">
-                                <img src="https://via.placeholder.com/200x200/4361ee/ffffff?text=Dr.+M" alt="Dr. Meera Joshi" class="img-fluid">
-                            </div>
-                            <div class="faculty-content">
-                                <h5>Dr. Meera Joshi</h5>
-                                <p class="faculty-position">Chemistry</p>
-                                <p class="faculty-qualification">M.Sc., Ph.D. in Chemistry</p>
-                                <p class="faculty-experience">10+ Years Experience</p>
-                                <p class="faculty-description">Expert in organic and inorganic chemistry with excellent track record in NEET preparation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6">
-                        <div class="faculty-card">
-                            <div class="faculty-image">
-                                <img src="https://via.placeholder.com/200x200/4361ee/ffffff?text=Prof.+R" alt="Prof. Rajesh Sharma" class="img-fluid">
-                            </div>
-                            <div class="faculty-content">
-                                <h5>Prof. Rajesh Sharma</h5>
-                                <p class="faculty-position">Biology</p>
-                                <p class="faculty-qualification">M.Sc. in Botany & Zoology</p>
-                                <p class="faculty-experience">8+ Years Experience</p>
-                                <p class="faculty-description">Passionate biology teacher with deep knowledge of NEET syllabus and examination patterns.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section py-5">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-5 fw-bold text-primary">Get In Touch</h2>
-                    <p class="lead">Ready to start your journey? Contact us today!</p>
-                </div>
-                
-                <div class="row g-5">
-                    <div class="col-lg-6">
-                        <div class="contact-info">
-                            <h4 class="mb-4">Contact Information</h4>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Address</h6>
-                                    <p>Vision Institute of Science<br>Dharmabad, Nanded, Maharashtra</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Phone</h6>
-                                    <p>+91 XXXXX XXXXX</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Email</h6>
-                                    <p>info@visioninstitute.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h6>Office Hours</h6>
-                                    <p>Monday - Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="contact-form-container">
-                            <h4 class="mb-4">Send us a Message</h4>
-                            <div id="messageAlert" class="alert alert-success d-none" role="alert">
-                                <i class="fas fa-check-circle me-2"></i>
-                                <span id="alertMessage">Your message has been sent successfully!</span>
-                            </div>
-                            <form method="POST" action="{{ url_for('contact') }}" id="contactForm" class="contact-form">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                                            <label for="name">Your Name *</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
-                                            <label for="email">Your Email *</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone">
-                                            <label for="phone">Your Phone</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="course" name="course">
-                                                <option value="">Select Course</option>
-                                                <option value="NEET/JEE Preparation">NEET/JEE Preparation</option>
-                                                <option value="Class 11 & 12">Class 11 & 12</option>
-                                                <option value="Class 9 & 10">Class 9 & 10</option>
-                                            </select>
-                                            <label for="course">Interested Course</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 120px" required></textarea>
-                                            <label for="message">Your Message *</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
-                                            <i class="fas fa-paper-plane"></i> Send Message
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="footer-brand">
-                        <div class="logo-container mb-3">
-                            <div class="logo-circle small">
-                                <span>VIS</span>
-                            </div>
-                            <div class="brand-text">
-                                <h5 class="text-white">Vision Institute of Science</h5>
-                                <p class="text-muted small">Learn with Confidence</p>
-                            </div>
-                        </div>
-                        <p class="text-muted">Empowering students with quality science education and personalized attention for academic excellence.</p>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="text-white mb-3">Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#courses">Courses</a></li>
-                        <li><a href="#success">Success Stories</a></li>
-                        <li><a href="#faculty">Faculty</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="text-white mb-3">Courses</h6>
-                    <ul class="footer-links">
-                        <li><a href="#courses">NEET Preparation</a></li>
-                        <li><a href="#courses">JEE Preparation</a></li>
-                        <li><a href="#courses">Class 11 & 12</a></li>
-                        <li><a href="#courses">Class 9 & 10</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="text-white mb-3">Contact Info</h6>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt me-2"></i>Dharmabad, Nanded, Maharashtra</p>
-                        <p><i class="fas fa-envelope me-2"></i>info@visioninstitute.com</p>
-                        <p><i class="fas fa-phone me-2"></i>+91 XXXXX XXXXX</p>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="text-muted mb-0">&copy; 2024 Vision Institute of Science. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="text-muted mb-0">Made with ❤️ for quality education</p>
                 </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-                            </html>                    <p>Students Taught</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-medal"></i>
+        <div class="courses-preview">
+            <div class="container">
+                <h2>Our Courses</h2>
+                <p class="subtitle">Comprehensive programs for every level</p>
+                
+                <div class="courses-grid">
+                    <div class="course-preview-card">
+                        <div class="course-header red"></div>
+                        <div class="course-content">
+                            <h3>NEET/JEE Chemistry</h3>
+                            <p>Comprehensive preparation for medical and engineering entrance exams</p>
+                            <button class="btn btn-ghost" onclick="showSection('courses')">Learn More →</button>
+                        </div>
                     </div>
-                    <h3>95%</h3>
-                    <p>Success Rate</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-book"></i>
+                    
+                    <div class="course-preview-card">
+                        <div class="course-header green"></div>
+                        <div class="course-content">
+                            <h3>11th/12th Biology Chemistry</h3>
+                            <p>Board exam preparation with practical applications</p>
+                            <button class="btn btn-ghost" onclick="showSection('courses')">Learn More →</button>
+                        </div>
                     </div>
-                    <h3>1000+</h3>
-                    <p>Pages of Notes</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-clock"></i>
+                    
+                    <div class="course-preview-card">
+                        <div class="course-header blue"></div>
+                        <div class="course-content">
+                            <h3>9th/10th Foundation</h3>
+                            <p>Strong foundation in science concepts for future success</p>
+                            <button class="btn btn-ghost" onclick="showSection('courses')">Learn More →</button>
+                        </div>
                     </div>
-                    <h3>5000+</h3>
-                    <p>Teaching Hours</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="section-header">
-                <h2 class="section-title">Why Choose Vision Institute?</h2>
-                <p class="section-subtitle">We provide the best science education with proven results</p>
+    <!-- Courses Section -->
+    <section id="courses" class="section">
+        <div class="container">
+            <div class="back-button" id="coursesBackBtn" style="display: none;">
+                <button class="btn btn-ghost" onclick="showCoursesMain()">
+                    <i class="fas fa-arrow-left"></i> Back to All Courses
+                </button>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Expert Faculty</h3>
-                    <p>Our teachers have 4+ years of experience with specialized knowledge in their subjects.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Premium Notes</h3>
-                    <p>Comprehensive handwritten notes covering all concepts with diagrams and examples.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Regular Tests</h3>
-                    <p>Weekly tests and monthly assessments to track progress and identify weak areas.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Small Batches</h3>
-                    <p>Limited students per batch to ensure individual attention and better learning.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Concept Clarity</h3>
-                    <p>Focus on fundamental understanding rather than rote learning for long-term retention.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-rupee-sign"></i>
-                    </div>
-                    <h3>Affordable Fees</h3>
-                    <p>Quality education at reasonable prices with flexible payment options.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="section-header">
-                <h2 class="section-title">About Our Institute</h2>
-                <p class="section-subtitle">Established in 2021 with a vision to provide quality science education</p>
-            </div>
+            <div class="breadcrumb" id="coursesBreadcrumb" style="display: none;"></div>
             
-            <div class="about-container">
-                <div class="about-content">
-                    <div class="about-block">
-                        <h3><i class="fas fa-bullseye"></i> Our Vision</h3>
-                        <p>To be the leading institute in science education by empowering students with knowledge, critical thinking skills, and confidence to excel in academics and competitive examinations.</p>
-                    </div>
-                    <div class="about-block">
-                        <h3><i class="fas fa-tasks"></i> Our Mission</h3>
-                        <p>To provide top-quality education through innovative teaching methods, comprehensive study material, and a nurturing environment that prepares students for board exams and competitive challenges.</p>
-                    </div>
-                    <div class="about-block">
-                        <h3><i class="fas fa-check-circle"></i> What We Offer</h3>
-                        <ul class="checklist">
-                            <li>Detailed handwritten notes for all subjects</li>
-                            <li>Chapter-wise tests and regular assessments</li>
-                            <li>Doubt-solving sessions and revision classes</li>
-                            <li>Personal mentorship and academic guidance</li>
-                            <li>Interactive learning with real-life examples</li>
-                            <li>Complete NEET Chemistry preparation</li>
-                            <li>Regular parent-teacher meetings</li>
-                            <li>Exam strategy and time management training</li>
+            <div id="coursesMain">
+                <div class="section-header">
+                    <h1>Our Courses</h1>
+                    <p>Choose your path to success</p>
+                </div>
+                
+                <div class="courses-grid">
+                    <div class="course-card" data-course="neet-chemistry">
+                        <div class="course-icon red">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3>NEET/JEE Chemistry</h3>
+                        <p>Master chemistry for medical and engineering entrance exams with expert guidance and comprehensive study materials.</p>
+                        <ul class="course-features">
+                            <li>• Organic, Inorganic & Physical Chemistry</li>
+                            <li>• Mock Tests & Practice Papers</li>
+                            <li>• Previous Years Question Analysis</li>
                         </ul>
+                        <button class="btn btn-primary red" onclick="showCourseDetails('neet-chemistry')">Know More</button>
+                    </div>
+                    
+                    <div class="course-card" data-course="11-12-bio-chem">
+                        <div class="course-icon green">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3>11th/12th Biology Chemistry</h3>
+                        <p>Excel in board exams with our comprehensive programs covering both biology and chemistry syllabi.</p>
+                        <ul class="course-features">
+                            <li>• Board Exam Focused Curriculum</li>
+                            <li>• Practical Lab Sessions</li>
+                            <li>• Regular Assessment & Feedback</li>
+                        </ul>
+                        <button class="btn btn-primary green" onclick="showCourseDetails('11-12-bio-chem')">Know More</button>
+                    </div>
+                    
+                    <div class="course-card" data-course="9-10-foundation">
+                        <div class="course-icon blue">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>9th/10th Foundation Science</h3>
+                        <p>Build strong foundations in science concepts to excel in higher studies and competitive examinations.</p>
+                        <ul class="course-features">
+                            <li>• Physics, Chemistry & Biology</li>
+                            <li>• Concept Building Approach</li>
+                            <li>• Interactive Learning Methods</li>
+                        </ul>
+                        <button class="btn btn-primary blue" onclick="showCourseDetails('9-10-foundation')">Know More</button>
                     </div>
                 </div>
+            </div>
+            
+            <div id="courseDetails" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1>About Vision Institute</h1>
+                <p>Excellence in Science Education Since 2021</p>
+            </div>
+            
+            <div class="about-content">
                 <div class="about-image">
-                    <div class="image-frame">
-                        <img src="images/institute-building.jpg" alt="Vision Institute building" loading="lazy">
-                    </div>
-                    <div class="experience-badge">
-                        <span>4+ Years</span>
-                        <small>of Excellence</small>
-                    </div>
+                    <svg width="400" height="300" viewBox="0 0 400 300">
+                        <rect width="400" height="300" fill="url(#aboutGradient)" rx="20"/>
+                        <defs>
+                            <linearGradient id="aboutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="150" r="60" fill="rgba(255,255,255,0.2)"/>
+                        <path d="M170 130 L200 160 L230 130" stroke="white" stroke-width="4" fill="none"/>
+                        <text x="200" y="200" text-anchor="middle" fill="white" font-size="16" font-weight="bold">VIS</text>
+                    </svg>
                 </div>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section id="courses" class="courses-section">
-            <div class="section-header">
-                <h2 class="section-title">Our Courses</h2>
-                <p class="section-subtitle">Comprehensive science education for academic and competitive success</p>
-            </div>
-            
-            <div class="course-tabs">
-                <button class="tab-button active" data-tab="school"><i class="fas fa-school"></i> School Curriculum</button>
-                <button class="tab-button" data-tab="neet"><i class="fas fa-user-md"></i> NEET Preparation</button>
-                <button class="tab-button" data-tab="resources"><i class="fas fa-download"></i> Study Resources</button>
-            </div>
-            
-            <!-- School Curriculum Tab -->
-            <div class="tab-content active" id="school-tab">
-                <div class="course-timeline">
-                    <div class="timeline-path"></div>
-                    
-                    <!-- Class 9 -->
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <h3>Class 9 Science</h3>
-                            <div class="timeline-subjects">
-                                <div class="subject">
-                                    <h4><i class="fas fa-atom"></i> Physics</h4>
-                                    <ul>
-                                        <li>Motion</li>
-                                        <li>Force and Laws</li>
-                                        <li>Gravitation</li>
-                                        <li>Work and Energy</li>
-                                        <li>Sound</li>
-                                    </ul>
-                                </div>
-                                <div class="subject">
-                                    <h4><i class="fas fa-flask"></i> Chemistry</h4>
-                                    <ul>
-                                        <li>Matter</li>
-                                        <li>Atoms & Molecules</li>
-                                        <li>Structure of Atom</li>
-                                        <li>Chemical Reactions</li>
-                                    </ul>
-                                </div>
-                                <div class="subject">
-                                    <h4><i class="fas fa-dna"></i> Biology</h4>
-                                    <ul>
-                                        <li>Cell Structure</li>
-                                        <li>Tissues</li>
-                                        <li>Diversity</li>
-                                        <li>Life Processes</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-meta">
-                                <span><i class="fas fa-rupee-sign"></i> 2,500/month</span>
-                                <span><i class="fas fa-clock"></i> 4 classes/week</span>
-                            </div>
-                        </div>
-                        <div class="timeline-year">Class 9</div>
-                    </div>
-                    
-                    <!-- Class 10 -->
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <h3>Class 10 Science</h3>
-                            <div class="timeline-subjects">
-                                <div class="subject">
-                                    <h4><i class="fas fa-atom"></i> Physics</h4>
-                                    <ul>
-                                        <li>Light</li>
-                                        <li>Human Eye</li>
-                                        <li>Electricity</li>
-                                        <li>Magnetism</li>
-                                    </ul>
-                                </div>
-                                <div class="subject">
-                                    <h4><i class="fas fa-flask"></i> Chemistry</h4>
-                                    <ul>
-                                        <li>Chemical Reactions</li>
-                                        <li>Acids, Bases</li>
-                                        <li>Metals</li>
-                                        <li>Carbon Compounds</li>
-                                    </ul>
-                                </div>
-                                <div class="subject">
-                                    <h4><i class="fas fa-dna"></i> Biology</h4>
-                                    <ul>
-                                        <li>Life Processes</li>
-                                        <li>Control</li>
-                                        <li>Reproduction</li>
-                                        <li>Heredity</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-meta">
-                                <span><i class="fas fa-rupee-sign"></i> 2,800/month</span>
-                                <span><i class="fas fa-clock"></i> 5 classes/week</span>
-                            </div>
-                        </div>
-                        <div class="timeline-year">Class 10</div>
-                    </div>
-                    
-                    <!-- Class 11 -->
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <h3>Class 11 Science</h3>
-                            <div class="timeline-subjects">
-                                <div class="subject">
-                                    <h4><i class="fas fa-dna"></i> Biology</h4>
-                                    <ul>
-                                        <li>Living World</li>
-                                        <li>Plant Kingdom</li>
-                                        <li>Animal Kingdom</li>
-                                        <li>Cell Structure</li>
-                                        <li>Biomolecules</li>
-                                    </ul>
-                                </div>
-                                <div class="subject">
-                                    <h4><i class="fas fa-flask"></i> Chemistry</h4>
-                                    <ul>
-                                        <li>Basic Concepts</li>
-                                        <li>Atomic Structure</li>
-                                        <li>Chemical Bonding</li>
-                                        <li>States of Matter</li>
-                                        <li>Thermodynamics</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-meta">
-                                <span><i class="fas fa-rupee-sign"></i> 3,500/month</span>
-                                <span><i class="fas fa-clock"></i> 6 classes/week</span>
-                            </div>
-                        </div>
-                        <div class="timeline-year">Class 11</div>
-                    </div>
-                    
-                    <!-- Class 12 -->
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <h3>Class 12 Science</h3>
-                            <div class="timeline-subjects">
-                                <div class="subject">
-                                    <h4><i class="fas fa-dna"></i> Biology</h4>
-                                    <ul>
-                                        <li>Reproduction</li>
-                                        <li>Genetics</li>
-                                        <li>Biotechnology</li>
-                                        <li>Ecology</li>
-                                        <li>Human Health</li>
-                                    </ul>
-                                </div>
-                                <div class="subject">
-                                    <h4><i class="fas fa-flask"></i> Chemistry</h4>
-                                    <ul>
-                                        <li>Solutions</li>
-                                        <li>Electrochemistry</li>
-                                        <li>Chemical Kinetics</li>
-                                        <li>Organic Chemistry</li>
-                                        <li>Biomolecules</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-meta">
-                                <span><i class="fas fa-rupee-sign"></i> 4,000/month</span>
-                                <span><i class="fas fa-clock"></i> 6 classes/week</span>
-                            </div>
-                        </div>
-                        <div class="timeline-year">Class 12</div>
-                    </div>
+                
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Vision Institute of Science (VIS) was established in 2021 with a clear mission: to provide exceptional science education that empowers students to achieve their dreams in competitive examinations and academic pursuits.</p>
+                    <p>Our institute specializes in Chemistry and Biology education for students preparing for NEET, JEE, and board examinations. We believe in creating a learning environment where students can develop both conceptual understanding and practical application skills.</p>
+                    <p>With our motto "Learn with Confidence," we strive to build not just academic excellence but also the self-assurance needed to succeed in today's competitive world.</p>
                 </div>
             </div>
             
-            <!-- NEET Preparation Tab -->
-            <div class="tab-content" id="neet-tab">
-                <div class="neet-container">
-                    <div class="neet-image">
-                        <img src="images/neet-preparation.jpg" alt="NEET Preparation" loading="lazy">
-                        <div class="image-overlay">
-                            <h3>NEET Chemistry Specialization</h3>
-                            <p>160+ marks guaranteed in Chemistry</p>
-                        </div>
-                    </div>
-                    <div class="neet-content">
-                        <div class="neet-highlights">
-                            <h3><i class="fas fa-bullseye"></i> NEET Chemistry Program</h3>
-                            <p>Our specialized NEET Chemistry course is designed to help students master all three branches of Chemistry - Physical, Organic, and Inorganic - with concept clarity and problem-solving techniques.</p>
-                            
-                            <div class="highlight-cards">
-                                <div class="highlight-card">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-brain"></i>
-                                    </div>
-                                    <h4>Concept Building</h4>
-                                    <p>Strong foundation with crystal clear concepts</p>
-                                </div>
-                                <div class="highlight-card">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                    <h4>Special Notes</h4>
-                                    <p>NEET-specific handwritten notes</p>
-                                </div>
-                                <div class="highlight-card">
-                                    <div class="highlight-icon">
-                                        <i class="fas fa-clock"></i>
-                                    </div>
-                                    <h4>Time Management</h4>
-                                    <p>Strategies to solve questions quickly</p>
-                                </div>
-                            </div>
+            <div class="founder-section">
+                <div class="card">
+                    <h2>Meet Our Founder</h2>
+                    <div class="founder-content">
+                        <div class="founder-image">
+                            <svg width="300" height="300" viewBox="0 0 300 300">
+                                <rect width="300" height="300" fill="url(#founderGradient)" rx="20"/>
+                                <defs>
+                                    <linearGradient id="founderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#6b7280;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="150" cy="120" r="40" fill="rgba(255,255,255,0.3)"/>
+                                <rect x="110" y="180" width="80" height="60" fill="rgba(255,255,255,0.2)" rx="10"/>
+                                <text x="150" y="270" text-anchor="middle" fill="white" font-size="12">Founder</text>
+                            </svg>
                         </div>
                         
-                        <div class="neet-syllabus">
-                            <h4><i class="fas fa-book-open"></i> Syllabus Coverage</h4>
-                            <div class="syllabus-accordion">
-                                <div class="accordion-item">
-                                    <button class="accordion-header">
-                                        <i class="fas fa-atom"></i> Physical Chemistry
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <ul>
-                                            <li>Some Basic Concepts</li>
-                                            <li>Atomic Structure</li>
-                                            <li>Chemical Equilibrium</li>
-                                            <li>Thermodynamics</li>
-                                            <li>Electrochemistry</li>
-                                            <li>Chemical Kinetics</li>
-                                        </ul>
+                        <div class="founder-details">
+                            <h3>Mr. Mohammad Sultan Rafiyoddin</h3>
+                            <p class="founder-title">Founder & Director</p>
+                            
+                            <div class="founder-info">
+                                <div class="info-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <div>
+                                        <strong>Education:</strong>
+                                        <p>BSc in Computer Science Engineering from LBS (Lal Bahadur Shastri) Mahavidyalaya, Dharmabad, Nanded, Maharashtra</p>
+                                        <p>MSc in Chemistry</p>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-header">
-                                        <i class="fas fa-bong"></i> Organic Chemistry
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <ul>
-                                            <li>General Organic Chemistry</li>
-                                            <li>Hydrocarbons</li>
-                                            <li>Haloalkanes & Haloarenes</li>
-                                            <li>Alcohols, Phenols & Ethers</li>
-                                            <li>Aldehydes, Ketones & Acids</li>
-                                            <li>Amines</li>
-                                            <li>Biomolecules</li>
-                                        </ul>
+                                
+                                <div class="info-item">
+                                    <i class="fas fa-users"></i>
+                                    <div>
+                                        <strong>Expertise:</strong>
+                                        <p>Specialized in teaching both Biology and Chemistry with years of experience in helping students excel in competitive examinations and board exams.</p>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-header">
-                                        <i class="fas fa-vial"></i> Inorganic Chemistry
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <ul>
-                                            <li>Classification of Elements</li>
-                                            <li>Chemical Bonding</li>
-                                            <li>s-Block Elements</li>
-                                            <li>p-Block Elements</li>
-                                            <li>d- and f-Block Elements</li>
-                                            <li>Coordination Compounds</li>
-                                        </ul>
+                                
+                                <div class="info-item">
+                                    <i class="fas fa-target"></i>
+                                    <div>
+                                        <strong>Vision:</strong>
+                                        <p>To create a learning environment where every student can discover their potential and achieve academic excellence with confidence.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Study Resources Tab -->
-            <div class="tab-content" id="resources-tab">
-                <div class="resources-container">
-                    <div class="resources-header">
-                        <h3><i class="fas fa-download"></i> Download Study Resources</h3>
-                        <p>Access our premium study materials to boost your preparation</p>
-                    </div>
-                    
-                    <div class="resource-categories">
-                        <div class="category-card">
-                            <div class="category-icon">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <h4>Class Notes</h4>
-                            <p>Detailed chapter-wise handwritten notes</p>
-                            <a href="#" class="download-btn"><i class="fas fa-download"></i> Download</a>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <h4>Question Banks</h4>
-                            <p>Practice questions with solutions</p>
-                            <a href="#" class="download-btn"><i class="fas fa-download"></i> Download</a>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">
-                                <i class="fas fa-clipboard-list"></i>
-                            </div>
-                            <h4>Previous Papers</h4>
-                            <p>Board exam papers with solutions</p>
-                            <a href="#" class="download-btn"><i class="fas fa-download"></i> Download</a>
-                        </div>
-                        <div class="category-card">
-                            <div class="category-icon">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <h4>Revision Sheets</h4>
-                            <p>Quick revision before exams</p>
-                            <a href="#" class="download-btn"><i class="fas fa-download"></i> Download</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Success Stories Section -->
-       <!-- Student Success Stories Section -->
-<section id="success" class="success-section">
-  <div class="section-header">
-    <h2 class="section-title">Student Success Stories</h2>
-    <p class="section-subtitle">Our top performers with 90+ marks in board exams</p>
-  </div>
-
-  <!-- Top Performers with Photos -->
-  <div class="top-performers-grid">
-    <!-- Student 1 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/joshi-ekta.jpg" alt="Joshi Ekta" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">96/100</span>
-        <span class="name">Joshi Ekta</span>
-        <span class="year">2024 Batch</span>
-      </div>
-    </div>
-
-    <!-- Student 2 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/petekar-samiksha.jpg" alt="Petekar Samiksha" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">95/100</span>
-        <span class="name">Petekar Samiksha</span>
-        <span class="year">2024 Batch</span>
-      </div>
-    </div>
-
-    <!-- Student 3 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/mahajan-nagraj.jpg" alt="Mahajan Nagraj" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">95/100</span>
-        <span class="name">Mahajan Nagraj</span>
-        <span class="year">2024 Batch</span>
-      </div>
-    </div>
-
-    <!-- Student 4 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/kumar-devyanshu.jpg" alt="Kumar Devyanshu" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">95/100</span>
-        <span class="name">Kumar Devyanshu</span>
-        <span class="year">2024 Batch</span>
-      </div>
-    </div>
-
-    <!-- Student 5 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/jallod-shruti.jpg" alt="Jallod Shruti" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">94/100</span>
-        <span class="name">Jallod Shruti</span>
-        <span class="year">2023 Batch</span>
-      </div>
-    </div>
-
-    <!-- Student 6 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/md-taha-hassan.jpg" alt="Md. Taha Hassan" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">97/100</span>
-        <span class="name">Md. Taha Hassan</span>
-        <span class="year">2023 Batch</span>
-      </div>
-    </div>
-
-    <!-- Student 7 -->
-    <div class="student-card">
-      <div class="student-photo">
-        <img src="images/students/sayyed-salman.jpg" alt="Sayyed Salman" loading="lazy">
-      </div>
-      <div class="student-info">
-        <span class="marks">95/100</span>
-        <span class="name">Sayyed Salman</span>
-        <span class="year">2023 Batch</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Full Banner Photo -->
-  <div class="success-banner-photo">
-    <img src="images/success-banner.jpg" alt="Vision Institute Success Banner" loading="lazy">
-    <div class="banner-overlay">
-      <h3>Join Our Success Story!</h3>
-      <p>Be our next top performer with personalized guidance</p>
-      <a href="#join" class="cta-button">Enroll Now</a>
-    </div>
-  </div>
-
-  <!-- Complete Results List -->
-  <div class="all-results">
-    <h3>Our Complete Results</h3>
-    <div class="results-grid">
-      <div class="result-column">
-       
-      </div>
-     
-</section>
-        <!-- Faculty Section -->
-        <section id="faculty" class="faculty-section">
-            <div class="section-header">
-                <h2 class="section-title">Our Expert Faculty</h2>
-                <p class="section-subtitle">Learn from experienced and qualified teachers</p>
-            </div>
-            
-            <div class="faculty-container">
-                <div class="faculty-card">
-                    <div class="faculty-image">
-                        <img src="images/director.jpg" alt="Mr. Mohammad Sultan" loading="lazy">
-                    </div>
-                    <div class="faculty-info">
-                        <h3>Mr. Mohammad Sultan</h3>
-                        <p class="faculty-title">Director & Chemistry Faculty</p>
-                        <div class="faculty-qualification">
-                            <p><i class="fas fa-graduation-cap"></i> B.Sc. in Computer Science</p>
-                            <p><i class="fas fa-university"></i> Lal Bahadur Shastri Mahavidyalaya</p>
-                            <p><i class="fas fa-briefcase"></i> 4+ Years Teaching Experience</p>
-                        </div>
-                        <div class="faculty-expertise">
-                            <h4><i class="fas fa-star"></i> Expertise</h4>
-                            <ul>
-                                <li>NEET Chemistry</li>
-                                <li>Class 11-12 Chemistry</li>
-                                <li>Concept Building</li>
-                                <li>Problem Solving</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faculty-card">
-                    <div class="faculty-image">
-                        <img src="images/biology-teacher.jpg" alt="Biology Faculty" loading="lazy">
-                    </div>
-                    <div class="faculty-info">
-                        <h3>Mr. Mohammad Sultan</h3>
-                        <p class="faculty-title">Biology Faculty</p>
-                        <div class="faculty-qualification">
-                            <p><i class="fas fa-graduation-cap"></i> M.Sc. in chemistry BSC in Zoology</p>
-                            <p><i class="fas fa-university"></i>Lal bahadur shastri Mahavidyalaya</p>
-                            <p><i class="fas fa-briefcase"></i> 3+ Years Teaching Experience in biology </p>
-                        </div>
-                        <div class="faculty-expertise">
-                            <h4><i class="fas fa-star"></i> Expertise</h4>
-                            <ul>
-                                <li>Class 11-12 Biology</li>
-                                <li>NEET Biology</li>
-                                <li>Diagrams & Terminology</li>
-                                <li>Revision Techniques</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Join Section -->
-        <section id="join" class="join-section">
-            <div class="section-header">
-                <h2 class="section-title">Join Vision Institute</h2>
-                <p class="section-subtitle">Take the first step towards academic excellence</p>
-            </div>
-            
-            <div class="join-container">
-                <div class="join-content">
-                    <div class="benefits">
-                        <h3><i class="fas fa-check-circle"></i> Why Join Us?</h3>
-                        <ul class="checklist">
-                            <li>Small batch sizes (max 15 students)</li>
-                            <li>Weekly tests with detailed analysis</li>
-                            <li>Doubt clearing sessions every Saturday</li>
-                            <li>Comprehensive handwritten notes</li>
-                            <li>Affordable fees with discounts</li>
-                            <li>Regular parent-teacher meetings</li>
-                            <li>Exam strategy workshops</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="batch-schedule">
-                        <h3><i class="fas fa-calendar-alt"></i> Batch Schedule</h3>
-                        <div class="schedule-cards">
-                            <div class="schedule-card">
-                                <h4>Morning Batch</h4>
-                                <p><i class="fas fa-clock"></i> 7:00 AM - 9:00 AM</p>
-                                <p><i class="fas fa-calendar"></i> Monday to Saturday</p>
-                            </div>
-                            <div class="schedule-card">
-                                <h4>Afternoon Batch</h4>
-                                <p><i class="fas fa-clock"></i> 4:00 PM - 6:00 PM</p>
-                                <p><i class="fas fa-calendar"></i> Monday to Saturday</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-section">
-                        <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
-                        <div class="faq-accordion">
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    What is the admission process?
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p>Admission process is simple: 1) Fill the admission form, 2) Attend a counseling session, 3) Pay the fees, 4) Start classes. You can also visit the institute for more information.</p>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    Do you provide demo classes?
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p>Yes, we provide 2 demo classes for students to experience our teaching methodology before joining.</p>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    What is the fee structure?
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p>Fees vary by class and subjects. Class 9-10: ₹2,500/month, Class 11-12: ₹3,500/month, NEET Chemistry: ₹4,500/month. Discounts available for early payment and siblings.</p>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                    Do you provide study material?
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                                <div class="accordion-content">
-                                    <p>Yes, we provide comprehensive handwritten notes for all chapters. These notes are sufficient for board exams and NEET preparation.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="join-form-container">
-                    <div class="form-header">
-                        <h3><i class="fas fa-user-plus"></i> Admission Form</h3>
-                        <p>Fill this form to get started</p>
-                    </div>
-                    <form id="admission-form">
-                        <div class="form-group">
-                            <label for="name"><i class="fas fa-user"></i> Full Name</label>
-                            <input type="text" id="name" required placeholder="Enter your full name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" id="email" required placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                            <input type="tel" id="phone" required placeholder="Enter your phone number">
-                        </div>
-                        <div class="form-group">
-                            <label for="class"><i class="fas fa-graduation-cap"></i> Class</label>
-                            <select id="class" required>
-                                <option value="">Select Class</option>
-                                <option value="9">Class 9</option>
-                                <option value="10">Class 10</option>
-                                <option value="11">Class 11</option>
-                                <option value="12">Class 12</option>
-                                <option value="neet">NEET Preparation</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject"><i class="fas fa-book"></i> Subjects Interested</label>
-                            <select id="subject" required>
-                                <option value="">Select Subject</option>
-                                <option value="science">Science (9-10)</option>
-                                <option value="biology">Biology (11-12)</option>
-                                <option value="chemistry">Chemistry (11-12)</option>
-                                <option value="both">Biology & Chemistry</option>
-                                <option value="neet-chem">NEET Chemistry</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message"><i class="fas fa-comment"></i> Any Questions?</label>
-                            <textarea id="message" rows="3" placeholder="Your message here"></textarea>
-                        </div>
-                        <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Submit Application</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="section-header">
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">Get in touch for any queries or admission information</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Address</h4>
-                            <p>Vision Institute of Science<br>Near Bus Stand, Main Road<br>Dharmabad, Nanded<br>Maharashtra - 431809</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+91 9325642243<br>+91 8007924663</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@visioninstitutedharmabad.com<br>admissions@visioninstitutedharmabad.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h4>Working Hours</h4>
-                            <p>Monday - Saturday<br>8:00 AM - 6:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-container">
-                    <h3><i class="fas fa-paper-plane"></i> Send us a Message</h3>
-                    <form id="message-form">
-                        <div class="form-group">
-                            <label for="contact-name"><i class="fas fa-user"></i> Your Name</label>
-                            <input type="text" id="contact-name" required placeholder="Enter your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email"><i class="fas fa-envelope"></i> Email Address</label>
-                            <input type="email" id="contact-email" required placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-subject"><i class="fas fa-tag"></i> Subject</label>
-                            <input type="text" id="contact-subject" required placeholder="Enter subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message"><i class="fas fa-comment"></i> Message</label>
-                            <textarea id="contact-message" rows="5" required placeholder="Your message here"></textarea>
-                        </div>
-                        <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Send Message</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.345567456987!2d77.3168123148945!3d18.89184498754536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcdf5a3a5e3a3a5%3A0x3b9a3e3a3a3a3a3a!2sDharmabad%2C%20Maharashtra%20431809!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <div class="logo-circle small">
-                        <span>VIS</span>
-                    </div>
-                    <div>
-                        <h4>Vision Institute of Science</h4>
-                        <p>Learn with Confidence</p>
-                    </div>
-                </div>
-                <p class="footer-description">Providing quality science education in Dharmabad since 2021. Specialized coaching for classes 9-12 and NEET preparation with excellent results.</p>
-                <div class="footer-social">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <div class="links-column">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Courses</a></li>
-                        <li><a href="#faculty"><i class="fas fa-chevron-right"></i> Faculty</a></li>
-                        <li><a href="#join"><i class="fas fa-chevron-right"></i> Admissions</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                <div class="links-column">
-                    <h5>Courses</h5>
-                    <ul>
-                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Class 9-10 Science</a></li>
-                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Class 11-12 Biology</a></li>
-                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Class 11-12 Chemistry</a></li>
-                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> NEET Chemistry</a></li>
-                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Study Resources</a></li>
-                    </ul>
-                </div>
-                <div class="links-column">
-                    <h5>Contact Info</h5>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Dharmabad, Nanded</li>
-                        <li><i class="fas fa-phone-alt"></i> +91 9325642243</li>
-                        <li><i class="fas fa-envelope"></i> info@visioninstitutedharmabad.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM</li>
-                    </ul>
                 </div>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2023 Vision Institute of Science. All Rights Reserved.</p>
-            <div class="footer-legal">
-                <a href="#"><i class="fas fa-lock"></i> Privacy Policy</a>
-                <a href="#"><i class="fas fa-file-alt"></i> Terms of Service</a>
-                <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Our Faculty</h1>
+                <p>Expert educators dedicated to your success</p>
+            </div>
+            
+            <div class="faculty-card">
+                <div class="faculty-image">
+                    <svg width="300" height="400" viewBox="0 0 300 400">
+                        <rect width="300" height="400" fill="url(#facultyGradient)" rx="20"/>
+                        <defs>
+                            <linearGradient id="facultyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="150" cy="150" r="60" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="100" y="230" width="100" height="80" fill="rgba(255,255,255,0.2)" rx="10"/>
+                        <text x="150" y="350" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Faculty</text>
+                    </svg>
+                </div>
+                
+                <div class="faculty-details">
+                    <h2>Mr. Mohammad Sultan</h2>
+                    <p class="faculty-title">Chemistry & Biology Faculty</p>
+                    
+                    <div class="expertise-grid">
+                        <div class="expertise-card blue">
+                            <h4><i class="fas fa-flask"></i> Chemistry Expertise</h4>
+                            <ul>
+                                <li>• Organic Chemistry</li>
+                                <li>• Inorganic Chemistry</li>
+                                <li>• Physical Chemistry</li>
+                                <li>• NEET/JEE Preparation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="expertise-card green">
+                            <h4><i class="fas fa-dna"></i> Biology Expertise</h4>
+                            <ul>
+                                <li>• Botany</li>
+                                <li>• Zoology</li>
+                                <li>• Human Physiology</li>
+                                <li>• Board Exam Preparation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faculty-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span><strong>Qualification:</strong> MSc Chemistry, BSc CSE</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <span><strong>Experience:</strong> 3+ Years in Science Education</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-award"></i>
+                            <span><strong>Achievement:</strong> 100% Success Rate in Student Results</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="teaching-philosophy">
+                <h4><i class="fas fa-quote-left"></i> Teaching Philosophy</h4>
+                <p>"I believe that every student has the potential to excel in science. My approach focuses on building strong conceptual foundations while making learning enjoyable and engaging. Through personalized attention and innovative teaching methods, I help students not just memorize facts, but truly understand the fascinating world of chemistry and biology."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Success Stories</h1>
+                <p>Celebrating our students' achievements</p>
+            </div>
+            
+            <div class="success-grid">
+                <div class="success-card" onclick="openSuccessModal('success1')">
+                    <h3>Board Results 2022-23</h3>
+                    <p>Exceptional performance in SSC Board Science examination</p>
+                    <div class="success-stat blue">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <p class="click-hint">Click to view full details</p>
+                </div>
+                
+                <div class="success-card" onclick="openSuccessModal('success2')">
+                    <h3>HSC Results 2024</h3>
+                    <p>Outstanding achievements in Higher Secondary examinations</p>
+                    <div class="success-stat green">
+                        <div class="stat-number">95%+</div>
+                        <div class="stat-label">Top Scorers</div>
+                    </div>
+                    <p class="click-hint">Click to view full details</p>
+                </div>
+                
+                <div class="success-card" onclick="openSuccessModal('success3')">
+                    <h3>Foundation Results</h3>
+                    <p>Strong foundation building for 9th and 10th class students</p>
+                    <div class="success-stat red">
+                        <div class="stat-number">96%</div>
+                        <div class="stat-label">Highest Score</div>
+                    </div>
+                    <p class="click-hint">Click to view full details</p>
+                </div>
+            </div>
+            
+            <div class="testimonials">
+                <h2>What Our Students Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-avatar blue">JE</div>
+                            <div class="student-info">
+                                <h4>Joshi Ekta</h4>
+                                <p>96 Marks - Board Topper</p>
+                            </div>
+                        </div>
+                        <p>"Vision Institute gave me the confidence and knowledge I needed to excel. The teaching methods are excellent and the personal attention helped me achieve my goals."</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-avatar green">KS</div>
+                            <div class="student-info">
+                                <h4>Khan Sara</h4>
+                                <p>95 Marks - HSC Achiever</p>
+                            </div>
+                        </div>
+                        <p>"The faculty at Vision Institute truly cares about each student's success. Their innovative teaching approach made complex topics easy to understand."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Contact Us</h1>
+                <p>Get in touch for admissions and inquiries</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <div class="card">
+                        <h2>Send us a Message</h2>
+                        <form action="https://formspree.io/f/your-form-id" method="POST" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="course">Course Interest</label>
+                                <select id="course" name="course" required>
+                                    <option value="">Select a course</option>
+                                    <option value="neet-chemistry">NEET/JEE Chemistry</option>
+                                    <option value="11-12-bio-chem">11th/12th Biology Chemistry</option>
+                                    <option value="9-10-foundation">9th/10th Foundation Science</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="card">
+                        <h2>Contact Information</h2>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon blue">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+91 9325642243</p>
+                                <small>Mr. Mohammad Sultan Sir</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon green">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Address</h4>
+                                <p>In front of Police Station,<br>
+                                Above Dattkrupa Medical,<br>
+                                Dharmabad, Maharashtra</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon red">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Office Hours</h4>
+                                <p>Monday - Saturday<br>
+                                9:00 AM - 7:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admission-notice">
+                        <h3>Admissions Open!</h3>
+                        <p>Join Vision Institute and start your journey to academic excellence. Admissions are now open for all courses.</p>
+                        <ul>
+                            <li>• Class 10th Science</li>
+                            <li>• 11th & 12th Biology & Chemistry</li>
+                            <li>• NEET & JEE Preparation</li>
+                        </ul>
+                        <button class="btn btn-light" onclick="showSection('join')">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Join Vision Institute</h1>
+                <p>Start your journey to academic excellence</p>
+            </div>
+            
+            <div class="join-form">
+                <div class="card">
+                    <form action="https://formspree.io/f/your-form-id" method="POST" id="joinForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="studentName">Student Name *</label>
+                                <input type="text" id="studentName" name="studentName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth *</label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fatherName">Father's Name *</label>
+                                <input type="text" id="fatherName" name="fatherName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="motherName">Mother's Name *</label>
+                                <input type="text" id="motherName" name="motherName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="joinEmail">Email *</label>
+                                <input type="email" id="joinEmail" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="joinPhone">Phone Number *</label>
+                                <input type="tel" id="joinPhone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Complete Address *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentClass">Current Class *</label>
+                                <select id="currentClass" name="currentClass" required>
+                                    <option value="">Select Current Class</option>
+                                    <option value="9th">9th Class</option>
+                                    <option value="10th">10th Class</option>
+                                    <option value="11th">11th Class</option>
+                                    <option value="12th">12th Class</option>
+                                    <option value="12th-passed">12th Passed (NEET/JEE Prep)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="courseInterest">Course Interest *</label>
+                                <select id="courseInterest" name="courseInterest" required>
+                                    <option value="">Select Course</option>
+                                    <option value="foundation-science">Foundation Science (9th/10th)</option>
+                                    <option value="biology-chemistry">Biology & Chemistry (11th/12th)</option>
+                                    <option value="neet-preparation">NEET Preparation</option>
+                                    <option value="jee-chemistry">JEE Chemistry</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="previousSchool">Previous School</label>
+                                <input type="text" id="previousSchool" name="previousSchool">
+                            </div>
+                            <div class="form-group">
+                                <label for="academicPerformance">Previous Academic Performance</label>
+                                <select id="academicPerformance" name="academicPerformance">
+                                    <option value="">Select Performance</option>
+                                    <option value="excellent">Excellent (90%+)</option>
+                                    <option value="very-good">Very Good (80-89%)</option>
+                                    <option value="good">Good (70-79%)</option>
+                                    <option value="average">Average (60-69%)</option>
+                                    <option value="needs-improvement">Needs Improvement (&lt;60%)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="careerGoals">Career Goals & Expectations</label>
+                            <textarea id="careerGoals" name="careerGoals" rows="3" 
+                                placeholder="Tell us about your career aspirations and what you hope to achieve..."></textarea>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreement" name="agreement" required>
+                            <label for="agreement">I agree to the terms and conditions and understand that Vision Institute will contact me regarding my application and course details. *</label>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary">Submit Application</button>
+                            <p>We will contact you within 24 hours to confirm your admission.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">V</div>
+                        <div class="logo-text">
+                            <h3>Vision Institute</h3>
+                            <p>Learn with Confidence</p>
+                        </div>
+                    </div>
+                    <p>Excellence in Science Education Since 2021. We provide comprehensive coaching for NEET, JEE, and Board examinations with expert faculty and proven teaching methods.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon github"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#faculty">Faculty</a></li>
+                        <li><a href="#success">Success Stories</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9325642243</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p>In front of Police Station,</p>
+                            <p>Above Dattkrupa Medical,</p>
+                            <p>Dharmabad, Maharashtra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vision Institute of Science. All rights reserved. | Designed with passion for education</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Success Story Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img id="successImage" src="" alt="Success Story" />
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
