@@ -1,3 +1,4 @@
+
  // Course Data
 const courseData = {
     'neet-chemistry': {
@@ -607,70 +608,93 @@ function updateBreadcrumb() {
     breadcrumb.style.display = 'flex';
 }
 
-// Success Story Modal
+// Success Story Modal with Proper Image Sizing
 function initializeModals() {
     const modal = document.getElementById('successModal');
     const modalClose = document.getElementById('modalClose');
+    const modalContent = document.querySelector('.modal-content');
     const successImage = document.getElementById('successImage');
     
-    // Close modal
+    // Map your success cards to images
+    const successImages = {
+        'success1': 'b1.png',
+        'success2': 'b2.png', 
+        'success3': 'b3.png'
+    };
+    
     function closeModal() {
         modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     
-    modalClose.addEventListener('click', closeModal);
-    
-    // Close on outside click
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Close on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            closeModal();
-        }
-    });
-    
-    // Global function to open modal
-    window.openSuccessModal = function(imageId) {
-        const imageSrc = successImages[imageId];
+    window.openSuccessModal = function(successId) {
+        const imageSrc = successImages[successId];
         if (imageSrc) {
             successImage.src = imageSrc;
-            modal.style.display = 'block';
+            successImage.onload = function() {
+                // Adjust large images to fit screen
+                const windowHeight = window.innerHeight;
+                const windowWidth = window.innerWidth;
+                
+                // Calculate maximum display dimensions (90% of window with padding)
+                const maxHeight = windowHeight * 0.9 - 40; // 40px for padding
+                const maxWidth = windowWidth * 0.9 - 40;
+                
+                // Apply sizing while maintaining aspect ratio
+                if (this.naturalWidth > maxWidth || this.naturalHeight > maxHeight) {
+                    const ratio = Math.min(maxWidth/this.naturalWidth, maxHeight/this.naturalHeight);
+                    this.style.width = (this.naturalWidth * ratio) + 'px';
+                    this.style.height = 'auto';
+                } else {
+                    // Show original size if smaller than window
+                    this.style.width = this.naturalWidth + 'px';
+                    this.style.height = 'auto';
+                }
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            };
         }
     };
+    
+    // Close handlers
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
+    });
 }
 
+document.addEventListener('DOMContentLoaded', initializeModals);
 // Form Handling
 function initializeForms() {
     // Contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            handleFormSubmit(this, 'Thank you for contacting us. We\'ll get back to you soon.');
+            await handleFormSubmit(this, 'Thank you for contacting us. We\'ll get back to you soon.');
         });
     }
     
     // Join form
     const joinForm = document.getElementById('joinForm');
     if (joinForm) {
-        joinForm.addEventListener('submit', function(e) {
+        joinForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const agreement = document.getElementById('agreement');
             if (!agreement.checked) {
                 showNotification('Please agree to the terms and conditions to proceed.', 'error');
                 return;
             }
-            handleFormSubmit(this, 'Thank you for your application. We will contact you within 24 hours to confirm your admission.');
+            await handleFormSubmit(this, 'Thank you for your application. We will contact you within 24 hours to confirm your admission.');
         });
     }
 }
 
-function handleFormSubmit(form, successMessage) {
+async function handleFormSubmit(form, successMessage) {
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     
@@ -678,11 +702,25 @@ function handleFormSubmit(form, successMessage) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Simulate form submission (replace with actual Formspree or backend logic)
-    setTimeout(() => {
-        showNotification(successMessage, 'success');
-        form.reset();
+    try {
+        // Actual Formspree submission
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
         
+        if (response.ok) {
+            showNotification(successMessage, 'success');
+            form.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        showNotification('Failed to send. Please try again.', 'error');
+    } finally {
         // Reset button
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
@@ -692,10 +730,10 @@ function handleFormSubmit(form, successMessage) {
         if (agreement) {
             agreement.checked = false;
         }
-    }, 1500);
+    }
 }
 
-// Notification System
+// Notification System (EXACTLY THE SAME AS YOURS)
 function showNotification(message, type = 'success') {
     // Create notification element
     const notification = document.createElement('div');
@@ -729,7 +767,7 @@ function showNotification(message, type = 'success') {
     }, 5000);
 }
 
-// Add CSS for notification animations
+// Add CSS for notification animations (EXACTLY THE SAME AS YOURS)
 const notificationStyles = document.createElement('style');
 notificationStyles.textContent = `
     @keyframes slideInRight {
@@ -756,6 +794,8 @@ notificationStyles.textContent = `
 `;
 document.head.appendChild(notificationStyles);
 
+// Initialize forms when DOM loads
+document.addEventListener('DOMContentLoaded', initializeForms);
 // Smooth scrolling for anchor links
 document.addEventListener('click', function(e) {
     if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
