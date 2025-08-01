@@ -1,1953 +1,786 @@
-/**
- * Vision Institute of Science - Main JavaScript File
- * Handles all interactive functionality including theme switching, course management,
- * form validation, smooth scrolling, and animations
- */
-
-class VisionInstitute {
-    constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'light';
-        this.scrollTimeout = null;
-        this.elements = {
-            loadingScreen: document.getElementById('loadingScreen'),
-            themeToggle: document.getElementById('themeToggle'),
-            courseDetails: document.getElementById('courseDetails'),
-            closeCourseDetails: document.getElementById('closeCourseDetails'),
-            courseTitle: document.getElementById('courseTitle'),
-            courseDescription: document.getElementById('courseDescription'),
-            courseDuration: document.getElementById('courseDuration'),
-            courseSubjects: document.getElementById('courseSubjects'),
-            syllabusAccordion: document.getElementById('syllabusAccordion'),
-            contactForm: document.getElementById('contactForm'),
-            submitBtn: document.getElementById('submitBtn'),
-            messageAlert: document.getElementById('messageAlert'),
-            alertMessage: document.getElementById('alertMessage')
-        };
-        this.courseData = this.initializeCourseData();
-        this.init();
-    }
-
-    /**
-     * Initialize all functionality
-     */
-    init() {
-        try {
-            if (!this.elements.loadingScreen) console.warn('Loading screen element not found');
-            if (!this.elements.themeToggle) console.warn('Theme toggle element not found');
-            if (!this.elements.courseDetails) console.warn('Course details element not found');
-
-            this.initTheme();
-            this.initLoadingScreen();
-            this.initNavigation();
-            this.initCourseSystem();
-            this.initContactForm();
-            this.initAnimations();
-            this.initScrollEffects();
-        } catch (error) {
-            console.error('Initialization error:', error);
-            // Ensure loading screen is hidden even if other initialization fails
-            this.hideLoadingScreen();
-        }
-    }
-
-    /**
-     * Initialize course data with detailed syllabus
-     */
-    initializeCourseData() {
-        return {
-            'neet': {
-                title: 'NEET/JEE Preparation',
-                description: 'Comprehensive coaching for medical and engineering entrance exams',
-                duration: '1-2 Years',
-                subjects: 'Physics, Chemistry, Biology/Mathematics',
-                syllabus: {
-                    'Physics': [
-                        'Mechanics - Laws of Motion, Work Energy Power',
-                        'Thermodynamics - Heat Transfer, Kinetic Theory',
-                        'Electromagnetism - Electric Field, Magnetic Field',
-                        'Optics - Ray Optics, Wave Optics',
-                        'Modern Physics - Atomic Structure, Nuclear Physics',
-                        'Oscillations and Waves - SHM, Sound Waves',
-                        'Current Electricity - Ohm\'s Law, Circuits',
-                        'Electromagnetic Induction - Faraday\'s Law'
-                    ],
-                    'Chemistry': [
-                        'Physical Chemistry - Atomic Structure, Chemical Bonding',
-                        'Organic Chemistry - Hydrocarbons, Functional Groups',
-                        'Inorganic Chemistry - Periodic Table, Chemical Reactions',
-                        'Thermodynamics - Enthalpy, Entropy, Free Energy',
-                        'Chemical Kinetics - Rate of Reaction, Catalysis',
-                        'Electrochemistry - Galvanic Cells, Electrolysis',
-                        'Solutions - Colligative Properties, Concentration',
-                        'Coordination Compounds - Bonding, Isomerism'
-                    ],
-                    'Biology': [
-                        'Cell Biology - Cell Structure, Cell Division',
-                        'Genetics - Heredity, DNA, RNA, Protein Synthesis',
-                        'Evolution - Origin of Life, Natural Selection',
-                        'Plant Physiology - Photosynthesis, Respiration',
-                        'Human Physiology - Digestive, Respiratory Systems',
-                        'Ecology - Ecosystem, Environmental Issues',
-                        'Reproduction - Sexual, Asexual Reproduction',
-                        'Biotechnology - Genetic Engineering, Applications'
-                    ]
-                }
+ // Course Data
+const courseData = {
+    'neet-chemistry': {
+        id: 'neet-chemistry',
+        title: 'NEET/JEE Chemistry',
+        description: 'Master chemistry for medical and engineering entrance exams with expert guidance and comprehensive study materials.',
+        color: 'red',
+        subcourses: [
+            {
+                id: 'class-11-neet-chem',
+                title: 'Class 11 NEET Chemistry',
+                chapters: [
+                    { id: 'some-basic-concepts', title: 'Some Basic Concepts of Chemistry', topics: 15 },
+                    { id: 'structure-of-atom', title: 'Structure of Atom', topics: 18 },
+                    { id: 'classification-elements', title: 'Classification of Elements and Periodicity', topics: 20 },
+                    { id: 'chemical-bonding', title: 'Chemical Bonding and Molecular Structure', topics: 25 },
+                    { id: 'states-of-matter', title: 'States of Matter', topics: 16 },
+                    { id: 'thermodynamics', title: 'Thermodynamics', topics: 22 },
+                    { id: 'equilibrium', title: 'Equilibrium', topics: 19 },
+                    { id: 'redox-reactions', title: 'Redox Reactions', topics: 14 },
+                    { id: 'hydrogen', title: 'Hydrogen', topics: 12 },
+                    { id: 's-block-elements', title: 'The s-Block Elements', topics: 17 },
+                    { id: 'p-block-elements', title: 'The p-Block Elements', topics: 24 },
+                    { id: 'organic-chemistry', title: 'Organic Chemistry - Some Basic Principles', topics: 21 },
+                    { id: 'hydrocarbons', title: 'Hydrocarbons', topics: 28 },
+                    { id: 'environmental-chemistry', title: 'Environmental Chemistry', topics: 13 }
+                ]
             },
-            '11-12': {
-                title: 'Class 11 & 12 Science',
-                description: 'Complete board exam preparation with concept clarity',
-                duration: '2 Years',
-                subjects: 'Physics, Chemistry, Biology, Mathematics',
-                syllabus: {
-                    'Physics (Class 11)': [
-                        'Physical World and Measurement',
-                        'Kinematics - Motion in Straight Line, Plane',
-                        'Laws of Motion - Newton\'s Laws, Friction',
-                        'Work, Energy and Power - Conservation Laws',
-                        'Motion of System of Particles - Center of Mass',
-                        'Rotation of Rigid Bodies - Angular Motion',
-                        'Gravitation - Universal Law, Planetary Motion',
-                        'Properties of Bulk Matter - Elasticity, Fluids'
-                    ],
-                    'Physics (Class 12)': [
-                        'Electric Charges and Fields - Coulomb\'s Law',
-                        'Electrostatic Potential - Capacitance, Energy',
-                        'Current Electricity - Ohm\'s Law, Resistance',
-                        'Magnetic Effect of Current - Biot-Savart Law',
-                        'Electromagnetic Induction - Faraday\'s Law, AC',
-                        'Alternating Current - AC Circuits, Power',
-                        'Electromagnetic Waves - Properties, Spectrum',
-                        'Ray Optics - Reflection, Refraction, Lenses'
-                    ],
-                    'Chemistry (Class 11)': [
-                        'Some Basic Concepts - Matter, Atoms, Molecules',
-                        'Structure of Atom - Bohr Model, Quantum Numbers',
-                        'Classification of Elements - Periodic Properties',
-                        'Chemical Bonding - Ionic, Covalent, Metallic',
-                        'States of Matter - Gas Laws, Liquid State',
-                        'Thermodynamics - First Law, Enthalpy',
-                        'Equilibrium - Chemical, Ionic Equilibrium',
-                        'Redox Reactions - Oxidation Numbers'
-                    ],
-                    'Chemistry (Class 12)': [
-                        'Solutions - Types, Concentration, Properties',
-                        'Electrochemistry - Galvanic Cells, Corrosion',
-                        'Chemical Kinetics - Rate Laws, Mechanisms',
-                        'Surface Chemistry - Adsorption, Catalysis',
-                        'General Principles of Metallurgy',
-                        'p-Block Elements - Groups 15, 16, 17, 18',
-                        'd and f Block Elements - Transition Metals',
-                        'Coordination Compounds - Werner Theory'
-                    ]
-                }
-            },
-            '9-10': {
-                title: 'Class 9 & 10 Science',
-                description: 'Strong foundation building with concept clarity',
-                duration: '2 Years',
-                subjects: 'Physics, Chemistry, Biology',
-                syllabus: {
-                    'Physics (Class 9)': [
-                        'Motion - Distance, Displacement, Velocity',
-                        'Force and Laws of Motion - Newton\'s Laws',
-                        'Gravitation - Universal Law, Weight',
-                        'Work and Energy - Kinetic, Potential Energy',
-                        'Sound - Production, Propagation, Echo',
-                        'Matter in Our Surroundings - States, Changes',
-                        'Is Matter Around Us Pure - Mixtures, Solutions',
-                        'Atoms and Molecules - Atomic Theory'
-                    ],
-                    'Physics (Class 10)': [
-                        'Light - Reflection, Refraction, Lenses',
-                        'Human Eye - Structure, Defects, Correction',
-                        'Electricity - Current, Potential, Resistance',
-                        'Magnetic Effects of Current - Electromagnets',
-                        'Sources of Energy - Conventional, Non-conventional',
-                        'Our Environment - Ecosystem, Food Chains',
-                        'Natural Resource Management - Forests, Water',
-                        'How Do Organisms Reproduce - Types, Process'
-                    ],
-                    'Chemistry (Class 9)': [
-                        'Atoms and Molecules - Laws of Chemical Combination',
-                        'Structure of Atom - Electrons, Protons, Neutrons',
-                        'Matter in Our Surroundings - Physical Properties',
-                        'Is Matter Around Us Pure - Elements, Compounds',
-                        'Improvement in Food Resources - Crop Production',
-                        'Natural Resources - Air, Water, Soil',
-                        'Diversity in Living Organisms - Classification',
-                        'Why Do We Fall Ill - Health, Disease'
-                    ],
-                    'Biology (Class 9 & 10)': [
-                        'Life Processes - Nutrition, Respiration, Transport',
-                        'Control and Coordination - Nervous, Hormonal System',
-                        'How Do Organisms Reproduce - Sexual, Asexual',
-                        'Heredity and Evolution - Inheritance, Speciation',
-                        'Our Environment - Ecosystem, Biodegradable Waste',
-                        'Management of Natural Resources - Conservation',
-                        'The Fundamental Unit of Life - Cell Structure',
-                        'Tissues - Plant, Animal Tissue Types'
-                    ]
-                }
+            {
+                id: 'class-12-neet-chem',
+                title: 'Class 12 NEET Chemistry',
+                chapters: [
+                    { id: 'solid-state', title: 'The Solid State', topics: 16 },
+                    { id: 'solutions', title: 'Solutions', topics: 18 },
+                    { id: 'electrochemistry', title: 'Electrochemistry', topics: 20 },
+                    { id: 'chemical-kinetics', title: 'Chemical Kinetics', topics: 17 },
+                    { id: 'surface-chemistry', title: 'Surface Chemistry', topics: 15 },
+                    { id: 'general-principles', title: 'General Principles and Processes of Isolation of Elements', topics: 14 },
+                    { id: 'p-block-elements-2', title: 'The p-Block Elements', topics: 26 },
+                    { id: 'd-f-block-elements', title: 'The d and f Block Elements', topics: 23 },
+                    { id: 'coordination-compounds', title: 'Coordination Compounds', topics: 19 },
+                    { id: 'haloalkanes', title: 'Haloalkanes and Haloarenes', topics: 21 },
+                    { id: 'alcohols-phenols', title: 'Alcohols, Phenols and Ethers', topics: 24 },
+                    { id: 'aldehydes-ketones', title: 'Aldehydes, Ketones and Carboxylic Acids', topics: 27 },
+                    { id: 'amines', title: 'Amines', topics: 18 },
+                    { id: 'biomolecules', title: 'Biomolecules', topics: 22 },
+                    { id: 'polymers', title: 'Polymers', topics: 16 },
+                    { id: 'chemistry-everyday', title: 'Chemistry in Everyday Life', topics: 14 }
+                ]
             }
-        };
-    }
-
-    /**
-     * Initialize theme system
-     */
-    initTheme() {
-        this.applyTheme(this.currentTheme);
-        
-        if (this.elements.themeToggle) {
-            this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
-        } else {
-            console.warn('Theme toggle button not found');
-        }
-    }
-
-    /**
-     * Apply theme to document
-     */
-    applyTheme(theme) {
-        document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
-        
-        if (this.elements.themeToggle) {
-            const icon = this.elements.themeToggle.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-        
-        localStorage.setItem('theme', theme);
-        this.currentTheme = theme;
-    }
-
-    /**
-     * Toggle between light and dark themes
-     */
-    toggleTheme() {
-        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-        this.applyTheme(newTheme);
-    }
-
-    /**
-     * Initialize loading screen
-     */
-    initLoadingScreen() {
-        // Simplified to ensure loading screen hides reliably
-        const hideLoading = () => {
-            if (this.elements.loadingScreen) {
-                this.elements.loadingScreen.classList.add('hidden');
-                setTimeout(() => {
-                    this.elements.loadingScreen.style.display = 'none';
-                    console.log('Loading screen hidden');
-                }, 500);
-            } else {
-                console.warn('Loading screen element not found during hide attempt');
-            }
-        };
-
-        // Hide after 1 second or on window load, whichever comes first
-        setTimeout(hideLoading, 1000);
-        window.addEventListener('load', hideLoading, { once: true });
-        
-        // Fallback in case of errors
-        window.addEventListener('error', () => {
-            console.warn('Error detected, forcing loading screen to hide');
-            hideLoading();
-        }, { once: true });
-    }
-
-    /**
-     * Force hide loading screen
-     */
-    hideLoadingScreen() {
-        if (this.elements.loadingScreen) {
-            this.elements.loadingScreen.classList.add('hidden');
-            setTimeout(() => {
-                this.elements.loadingScreen.style.display = 'none';
-                console.log('Loading screen hidden (fallback)');
-            }, 500);
-        }
-    }
-
-    /**
-     * Initialize navigation functionality
-     */
-    initNavigation() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                } else {
-                    console.warn(`Navigation target ${anchor.getAttribute('href')} not found`);
-                }
-            });
-        });
-
-        this.updateActiveNavigation();
-        window.addEventListener('scroll', () => {
-            clearTimeout(this.scrollTimeout);
-            this.scrollTimeout = setTimeout(() => this.updateActiveNavigation(), 100);
-        });
-
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                
-                if (navbarToggler && navbarCollapse && navbarCollapse.classList.contains('show')) {
-                    navbarToggler.click();
-                }
-            });
-        });
-    }
-
-    /**
-     * Update active navigation based on scroll position
-     */
-    updateActiveNavigation() {
-        try {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        } catch (error) {
-            console.error('Navigation update error:', error);
-        }
-    }
-
-    /**
-     * Initialize course system
-     */
-    initCourseSystem() {
-        try {
-            const courseCards = document.querySelectorAll('.course-card');
-            if (!courseCards.length) console.warn('No course cards found');
-            if (!this.elements.courseDetails) return;
-
-            courseCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const courseType = card.dataset.course;
-                    this.showCourseDetails(courseType);
-                });
-
-                // Add keyboard support
-                card.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        const courseType = card.dataset.course;
-                        this.showCourseDetails(courseType);
-                    }
-                });
-            });
-
-            if (this.elements.closeCourseDetails) {
-                this.elements.closeCourseDetails.addEventListener('click', () => {
-                    this.elements.courseDetails.style.display = 'none';
-                });
-            }
-        } catch (error) {
-            console.error('Course system initialization error:', error);
-        }
-    }
-
-    /**
-     * Show course details with dynamic syllabus
-     */
-    showCourseDetails(courseType) {
-        try {
-            if (!this.courseData[courseType]) {
-                console.error(`Course data for ${courseType} not found`);
-                return;
-            }
-
-            const course = this.courseData[courseType];
-            
-            // Update course details
-            if (this.elements.courseTitle) {
-                this.elements.courseTitle.textContent = course.title;
-            }
-            if (this.elements.courseDescription) {
-                this.elements.courseDescription.textContent = course.description;
-            }
-            if (this.elements.courseDuration) {
-                this.elements.courseDuration.textContent = course.duration;
-            }
-            if (this.elements.courseSubjects) {
-                this.elements.courseSubjects.textContent = course.subjects;
-            }
-
-            // Populate syllabus accordion
-            if (this.elements.syllabusAccordion) {
-                this.elements.syllabusAccordion.innerHTML = '';
-                Object.keys(course.syllabus).forEach((subject, index) => {
-                    const accordionItem = document.createElement('div');
-                    accordionItem.className = 'accordion-item';
-                    
-                    accordionItem.innerHTML = `
-                        <h2 class="accordion-header" id="heading${index}">
-                            <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapse${index}"
-                                    aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse${index}">
-                                ${subject}
-                            </button>
-                        </h2>
-                        <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}"
-                             aria-labelledby="heading${index}" data-bs-parent="#syllabusAccordion">
-                            <div class="accordion-body">
-                                <ul class="chapter-list">
-                                    ${course.syllabus[subject].map(chapter => `<li>${chapter}</li>`).join('')}
-                                </ul>
-                            </div>
-                        </div>
-                    `;
-                    
-                    this.elements.syllabusAccordion.appendChild(accordionItem);
-                });
-            }
-
-            // Show course details section
-            if (this.elements.courseDetails) {
-                this.elements.courseDetails.style.display = 'block';
-                this.elements.courseDetails.scrollIntoView({ behavior: 'smooth' });
-            }
-        } catch (error) {
-            console.error('Show course details error:', error);
-        }
-    }
-
-    /**
-     * Initialize contact form with validation and submission
-     */
-    initContactForm() {
-        try {
-            if (!this.elements.contactForm || !this.elements.submitBtn) {
-                console.warn('Contact form or submit button not found');
-                return;
-            }
-
-            this.elements.contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (this.validateForm()) {
-                    await this.submitForm();
-                }
-            });
-
-            // Real-time validation
-            ['name', 'email', 'phone', 'message'].forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field) {
-                    field.addEventListener('input', () => this.validateField(field));
-                    field.addEventListener('blur', () => this.validateField(field));
-                }
-            });
-        } catch (error) {
-            console.error('Contact form initialization error:', error);
-        }
-    }
-
-    /**
-     * Validate form field
-     */
-    validateField(field) {
-        try {
-            let isValid = true;
-            let errorMessage = '';
-            
-            const value = field.value.trim();
-            
-            if (field.required && !value) {
-                isValid = false;
-                errorMessage = 'This field is required';
-            } else if (field.type === 'email' && value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    isValid = false;
-                    errorMessage = 'Please enter a valid email address';
-                }
-            } else if (field.type === 'tel' && value) {
-                const phoneRegex = /^\+?[1-9]\d{9,14}$/;
-                if (!phoneRegex.test(value)) {
-                    isValid = false;
-                    errorMessage = 'Please enter a valid phone number (10-15 digits)';
-                }
-            }
-            
-            const formGroup = field.closest('.form-floating');
-            if (formGroup) {
-                let errorElement = formGroup.querySelector('.invalid-feedback');
-                if (!errorElement && !isValid) {
-                    errorElement = document.createElement('div');
-                    errorElement.className = 'invalid-feedback';
-                    formGroup.appendChild(errorElement);
-                }
-                
-                if (errorElement) {
-                    errorElement.textContent = errorMessage;
-                    field.classList.toggle('is-invalid', !isValid);
-                    errorElement.style.display = isValid ? 'none' : 'block';
-                }
-            }
-            
-            return isValid;
-        } catch (error) {
-            console.error('Field validation error:', error);
-            return false;
-        }
-    }
-
-    /**
-     * Validate entire form
-     */
-    validateForm() {
-        try {
-            let isValid = true;
-            
-            ['name', 'email', 'phone', 'message'].forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field && !this.validateField(field)) {
-                    isValid = false;
-                }
-            });
-            
-            return isValid;
-        } catch (error) {
-            console.error('Form validation error:', error);
-            return false;
-        }
-    }
-
-    /**
-     * Submit form data
-     */
-    async submitForm() {
-        try {
-            const formData = new FormData(this.elements.contactForm);
-            
-            if (this.elements.submitBtn) {
-                this.elements.submitBtn.disabled = true;
-                this.elements.submitBtn.innerHTML = `
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Sending...
-                `;
-            }
-
-            // Placeholder for static-only; replace with actual endpoint if backend exists
-            const response = await fetch(this.elements.contactForm.action, {
-                method: 'POST',
-                body: formData
-            });
-
-            if (response.ok) {
-                this.showAlert('success', 'Your message has been sent successfully!');
-                this.elements.contactForm.reset();
-                this.clearValidationErrors();
-            } else if (response.status === 400) {
-                this.showAlert('danger', 'Invalid form data. Please check your inputs.');
-            } else if (response.status === 500) {
-                this.showAlert('danger', 'Server error. Please try again later.');
-            } else {
-                this.showAlert('danger', 'Unexpected error. Please try again.');
-            }
-        } catch (error) {
-            this.showAlert('danger', 'Network error. Please check your connection.');
-            console.error('Form submission error:', error);
-        } finally {
-            if (this.elements.submitBtn) {
-                this.elements.submitBtn.disabled = false;
-                this.elements.submitBtn.innerHTML = `
-                    <i class="fas fa-paper-plane"></i> Send Message
-                `;
-            }
-        }
-    }
-
-    /**
-     * Show alert message
-     */
-    showAlert(type, message) {
-        try {
-            if (!this.elements.messageAlert || !this.elements.alertMessage) return;
-
-            this.elements.messageAlert.className = `alert alert-${type} d-block`;
-            this.elements.alertMessage.textContent = message;
-            
-            setTimeout(() => {
-                this.elements.messageAlert.classList.add('d-none');
-            }, 5000);
-        } catch (error) {
-            console.error('Alert display error:', error);
-        }
-    }
-
-    /**
-     * Clear validation errors
-     */
-    clearValidationErrors() {
-        try {
-            ['name', 'email', 'phone', 'message'].forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field) {
-                    const formGroup = field.closest('.form-floating');
-                    if (formGroup) {
-                        const errorElement = formGroup.querySelector('.invalid-feedback');
-                        if (errorElement) {
-                            errorElement.style.display = 'none';
-                        }
-                        field.classList.remove('is-invalid');
-                    }
-                }
-            });
-        } catch (error) {
-            console.error('Clear validation errors error:', error);
-        }
-    }
-
-    /**
-     * Initialize animations for elements
-     */
-    initAnimations() {
-        try {
-            const elements = document.querySelectorAll('.hero-content, .hero-image, .about-content, .about-image, .stat-card, .course-card, .success-card, .faculty-card, .contact-info, .contact-form-container');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.2,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            elements.forEach(element => observer.observe(element));
-
-            // Counter animation for stats
-            const statNumbers = document.querySelectorAll('.stat-number');
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.animateCounter(entry.target);
-                        counterObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            statNumbers.forEach(stat => counterObserver.observe(stat));
-        } catch (error) {
-            console.error('Animation initialization error:', error);
-        }
-    }
-
-    /**
-     * Animate counter for stats
-     */
-    animateCounter(element) {
-        try {
-            const target = parseInt(element.textContent.replace(/[^0-9]/g, ''), 10);
-            let current = 0;
-            const increment = target / 100;
-            const duration = 2000;
-            const stepTime = Math.abs(Math.floor(duration / target));
-
-            const timer = setInterval(() => {
-                current += increment;
-                element.textContent = Math.ceil(current) + (element.textContent.includes('%') ? '%' : '');
-                if (current >= target) {
-                    element.textContent = target + (element.textContent.includes('%') ? '%' : '');
-                    clearInterval(timer);
-                }
-            }, stepTime);
-        } catch (error) {
-            console.error('Counter animation error:', error);
-        }
-    }
-
-    /**
-     * Initialize scroll effects
-     */
-    initScrollEffects() {
-        try {
-            let lastScrollTop = 0;
-            const navbar = document.querySelector('.navbar');
-
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.scrollY;
-
-                if (currentScroll > lastScrollTop && currentScroll > 100) {
-                    navbar.style.transform = 'translateY(-100%)';
-                } else {
-                    navbar.style.transform = 'translateY(0)';
-                }
-                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-            });
-        } catch (error) {
-            console.error('Scroll effects initialization error:', error);
-        }
-    }
-}
-
-// Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    try {
-        new VisionInstitute();
-    } catch (error) {
-        console.error('Application initialization error:', error);
-        // Fallback to hide loading screen
-        const loadingScreen = document.getElementById('loadingScreen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500);
-        }
-    }
-});                        'Electric Charges and Fields - Coulomb\'s Law',
-                        'Electrostatic Potential - Capacitance, Energy',
-                        'Current Electricity - Ohm\'s Law, Resistance',
-                        'Magnetic Effect of Current - Biot-Savart Law',
-                        'Electromagnetic Induction - Faraday\'s Law, AC',
-                        'Alternating Current - AC Circuits, Power',
-                        'Electromagnetic Waves - Properties, Spectrum',
-                        'Ray Optics - Reflection, Refraction, Lenses'
-                    ],
-                    'Chemistry (Class 11)': [
-                        'Some Basic Concepts - Matter, Atoms, Molecules',
-                        'Structure of Atom - Bohr Model, Quantum Numbers',
-                        'Classification of Elements - Periodic Properties',
-                        'Chemical Bonding - Ionic, Covalent, Metallic',
-                        'States of Matter - Gas Laws, Liquid State',
-                        'Thermodynamics - First Law, Enthalpy',
-                        'Equilibrium - Chemical, Ionic Equilibrium',
-                        'Redox Reactions - Oxidation Numbers'
-                    ],
-                    'Chemistry (Class 12)': [
-                        'Solutions - Types, Concentration, Properties',
-                        'Electrochemistry - Galvanic Cells, Corrosion',
-                        'Chemical Kinetics - Rate Laws, Mechanisms',
-                        'Surface Chemistry - Adsorption, Catalysis',
-                        'General Principles of Metallurgy',
-                        'p-Block Elements - Groups 15, 16, 17, 18',
-                        'd and f Block Elements - Transition Metals',
-                        'Coordination Compounds - Werner Theory'
-                    ]
-                }
-            },
-            '9-10': {
-                title: 'Class 9 & 10 Science',
-                description: 'Strong foundation building with concept clarity',
-                duration: '2 Years',
-                subjects: 'Physics, Chemistry, Biology',
-                syllabus: {
-                    'Physics (Class 9)': [
-                        'Motion - Distance, Displacement, Velocity',
-                        'Force and Laws of Motion - Newton\'s Laws',
-                        'Gravitation - Universal Law, Weight',
-                        'Work and Energy - Kinetic, Potential Energy',
-                        'Sound - Production, Propagation, Echo',
-                        'Matter in Our Surroundings - States, Changes',
-                        'Is Matter Around Us Pure - Mixtures, Solutions',
-                        'Atoms and Molecules - Atomic Theory'
-                    ],
-                    'Physics (Class 10)': [
-                        'Light - Reflection, Refraction, Lenses',
-                        'Human Eye - Structure, Defects, Correction',
-                        'Electricity - Current, Potential, Resistance',
-                        'Magnetic Effects of Current - Electromagnets',
-                        'Sources of Energy - Conventional, Non-conventional',
-                        'Our Environment - Ecosystem, Food Chains',
-                        'Natural Resource Management - Forests, Water',
-                        'How Do Organisms Reproduce - Types, Process'
-                    ],
-                    'Chemistry (Class 9)': [
-                        'Atoms and Molecules - Laws of Chemical Combination',
-                        'Structure of Atom - Electrons, Protons, Neutrons',
-                        'Matter in Our Surroundings - Physical Properties',
-                        'Is Matter Around Us Pure - Elements, Compounds',
-                        'Improvement in Food Resources - Crop Production',
-                        'Natural Resources - Air, Water, Soil',
-                        'Diversity in Living Organisms - Classification',
-                        'Why Do We Fall Ill - Health, Disease'
-                    ],
-                    'Biology (Class 9 & 10)': [
-                        'Life Processes - Nutrition, Respiration, Transport',
-                        'Control and Coordination - Nervous, Hormonal System',
-                        'How Do Organisms Reproduce - Sexual, Asexual',
-                        'Heredity and Evolution - Inheritance, Speciation',
-                        'Our Environment - Ecosystem, Biodegradable Waste',
-                        'Management of Natural Resources - Conservation',
-                        'The Fundamental Unit of Life - Cell Structure',
-                        'Tissues - Plant, Animal Tissue Types'
-                    ]
-                }
-            }
-        };
-    }
-
-    /**
-     * Initialize theme system
-     */
-    initTheme() {
-        this.applyTheme(this.currentTheme);
-        
-        if (this.elements.themeToggle) {
-            this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
-        }
-    }
-
-    /**
-     * Apply theme to document
-     */
-    applyTheme(theme) {
-        document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
-        
-        if (this.elements.themeToggle) {
-            const icon = this.elements.themeToggle.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-        
-        localStorage.setItem('theme', theme);
-        this.currentTheme = theme;
-    }
-
-    /**
-     * Toggle between light and dark themes
-     */
-    toggleTheme() {
-        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-        this.applyTheme(newTheme);
-    }
-
-    /**
-     * Initialize loading screen
-     */
-    initLoadingScreen() {
-        window.addEventListener('load', () => {
-            if (this.elements.loadingScreen) {
-                setTimeout(() => {
-                    this.elements.loadingScreen.classList.add('hidden');
-                    setTimeout(() => {
-                        this.elements.loadingScreen.style.display = 'none';
-                    }, 500);
-                }, 1000);
-            }
-        });
-    }
-
-    /**
-     * Initialize navigation functionality
-     */
-    initNavigation() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        this.updateActiveNavigation();
-        window.addEventListener('scroll', () => {
-            clearTimeout(this.scrollTimeout);
-            this.scrollTimeout = setTimeout(() => this.updateActiveNavigation(), 100);
-        });
-
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                
-                if (navbarToggler && navbarCollapse && navbarCollapse.classList.contains('show')) {
-                    navbarToggler.click();
-                }
-            });
-        });
-    }
-
-    /**
-     * Update active navigation based on scroll position
-     */
-    updateActiveNavigation() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-            
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    /**
-     * Initialize course system
-     */
-    initCourseSystem() {
-        const courseCards = document.querySelectorAll('.course-card');
-        if (!courseCards.length) console.warn('No course cards found');
-        if (!this.elements.courseDetails) return;
-
-        courseCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const courseType = card.dataset.course;
-                this.showCourseDetails(courseType);
-            });
-
-            // Add keyboard support
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const courseType = card.dataset.course;
-                    this.showCourseDetails(courseType);
-                }
-            });
-        });
-
-        if (this.elements.closeCourseDetails) {
-            this.elements.closeCourseDetails.addEventListener('click', () => {
-                this.elements.courseDetails.style.display = 'none';
-            });
-        }
-    }
-
-    /**
-     * Show course details with dynamic syllabus
-     */
-    showCourseDetails(courseType) {
-        if (!this.courseData[courseType]) {
-            console.error(`Course data for ${courseType} not found`);
-            return;
-        }
-
-        const course = this.courseData[courseType];
-        
-        // Update course details
-        if (this.elements.courseTitle) {
-            this.elements.courseTitle.textContent = course.title;
-        }
-        if (this.elements.courseDescription) {
-            this.elements.courseDescription.textContent = course.description;
-        }
-        if (this.elements.courseDuration) {
-            this.elements.courseDuration.textContent = course.duration;
-        }
-        if (this.elements.courseSubjects) {
-            this.elements.courseSubjects.textContent = course.subjects;
-        }
-
-        // Populate syllabus accordion
-        if (this.elements.syllabusAccordion) {
-            this.elements.syllabusAccordion.innerHTML = '';
-            Object.keys(course.syllabus).forEach((subject, index) => {
-                const accordionItem = document.createElement('div');
-                accordionItem.className = 'accordion-item';
-                
-                accordionItem.innerHTML = `
-                    <h2 class="accordion-header" id="heading${index}">
-                        <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapse${index}"
-                                aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse${index}">
-                            ${subject}
-                        </button>
-                    </h2>
-                    <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}"
-                         aria-labelledby="heading${index}" data-bs-parent="#syllabusAccordion">
-                        <div class="accordion-body">
-                            <ul class="chapter-list">
-                                ${course.syllabus[subject].map(chapter => `<li>${chapter}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                `;
-                
-                this.elements.syllabusAccordion.appendChild(accordionItem);
-            });
-        }
-
-        // Show course details section
-        if (this.elements.courseDetails) {
-            this.elements.courseDetails.style.display = 'block';
-            this.elements.courseDetails.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    /**
-     * Initialize contact form with validation and submission
-     */
-    initContactForm() {
-        if (!this.elements.contactForm || !this.elements.submitBtn) {
-            console.warn('Contact form or submit button not found');
-            return;
-        }
-
-        this.elements.contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (this.validateForm()) {
-                await this.submitForm();
-            }
-        });
-
-        // Real-time validation
-        ['name', 'email', 'phone', 'message'].forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                field.addEventListener('input', () => this.validateField(field));
-                field.addEventListener('blur', () => this.validateField(field));
-            }
-        });
-    }
-
-    /**
-     * Validate form field
-     */
-    validateField(field) {
-        let isValid = true;
-        let errorMessage = '';
-        
-        const value = field.value.trim();
-        
-        if (field.required && !value) {
-            isValid = false;
-            errorMessage = 'This field is required';
-        } else if (field.type === 'email' && value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid email address';
-            }
-        } else if (field.type === 'tel' && value) {
-            const phoneRegex = /^\+?[1-9]\d{9,14}$/;
-            if (!phoneRegex.test(value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid phone number (10-15 digits)';
-            }
-        }
-        
-        const formGroup = field.closest('.form-floating');
-        if (formGroup) {
-            let errorElement = formGroup.querySelector('.invalid-feedback');
-            if (!errorElement && !isValid) {
-                errorElement = document.createElement('div');
-                errorElement.className = 'invalid-feedback';
-                formGroup.appendChild(errorElement);
-            }
-            
-            if (errorElement) {
-                errorElement.textContent = errorMessage;
-                field.classList.toggle('is-invalid', !isValid);
-                errorElement.style.display = isValid ? 'none' : 'block';
-            }
-        }
-        
-        return isValid;
-    }
-
-    /**
-     * Validate entire form
-     */
-    validateForm() {
-        let isValid = true;
-        
-        ['name', 'email', 'phone', 'message'].forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field && !this.validateField(field)) {
-                isValid = false;
-            }
-        });
-        
-        return isValid;
-    }
-
-    /**
-     * Submit form data
-     */
-    async submitForm() {
-        const formData = new FormData(this.elements.contactForm);
-        
-        if (this.elements.submitBtn) {
-            this.elements.submitBtn.disabled = true;
-            this.elements.submitBtn.innerHTML = `
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Sending...
-            `;
-        }
-
-        try {
-            // Placeholder for static-only; replace with actual endpoint if backend exists
-            const response = await fetch(this.elements.contactForm.action, {
-                method: 'POST',
-                body: formData
-            });
-
-            if (response.ok) {
-                this.showAlert('success', 'Your message has been sent successfully!');
-                this.elements.contactForm.reset();
-                this.clearValidationErrors();
-            } else if (response.status === 400) {
-                this.showAlert('danger', 'Invalid form data. Please check your inputs.');
-            } else if (response.status === 500) {
-                this.showAlert('danger', 'Server error. Please try again later.');
-            } else {
-                this.showAlert('danger', 'Unexpected error. Please try again.');
-            }
-        } catch (error) {
-            this.showAlert('danger', 'Network error. Please check your connection.');
-            console.error('Form submission error:', error);
-        } finally {
-            if (this.elements.submitBtn) {
-                this.elements.submitBtn.disabled = false;
-                this.elements.submitBtn.innerHTML = `
-                    <i class="fas fa-paper-plane"></i> Send Message
-                `;
-            }
-        }
-    }
-
-    /**
-     * Show alert message
-     */
-    showAlert(type, message) {
-        if (!this.elements.messageAlert || !this.elements.alertMessage) return;
-
-        this.elements.messageAlert.className = `alert alert-${type} d-block`;
-        this.elements.alertMessage.textContent = message;
-        
-        setTimeout(() => {
-            this.elements.messageAlert.classList.add('d-none');
-        }, 5000);
-    }
-
-    /**
-     * Clear validation errors
-     */
-    clearValidationErrors() {
-        ['name', 'email', 'phone', 'message'].forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                const formGroup = field.closest('.form-floating');
-                if (formGroup) {
-                    const errorElement = formGroup.querySelector('.invalid-feedback');
-                    if (errorElement) {
-                        errorElement.style.display = 'none';
-                    }
-                    field.classList.remove('is-invalid');
-                }
-            }
-        });
-    }
-
-    /**
-     * Initialize animations for elements
-     */
-    initAnimations() {
-        const elements = document.querySelectorAll('.hero-content, .hero-image, .about-content, .about-image, .stat-card, .course-card, .success-card, .faculty-card, .contact-info, .contact-form-container');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        elements.forEach(element => observer.observe(element));
-
-        // Counter animation for stats
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateCounter(entry.target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        statNumbers.forEach(stat => counterObserver.observe(stat));
-    }
-
-    /**
-     * Animate counter for stats
-     */
-    animateCounter(element) {
-        const target = parseInt(element.textContent.replace(/[^0-9]/g, ''), 10);
-        let current = 0;
-        const increment = target / 100;
-        const duration = 2000;
-        const stepTime = Math.abs(Math.floor(duration / target));
-
-        const timer = setInterval(() => {
-            current += increment;
-            element.textContent = Math.ceil(current) + (element.textContent.includes('%') ? '%' : '');
-            if (current >= target) {
-                element.textContent = target + (element.textContent.includes('%') ? '%' : '');
-                clearInterval(timer);
-            }
-        }, stepTime);
-    }
-
-    /**
-     * Initialize scroll effects
-     */
-    initScrollEffects() {
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.navbar');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.scrollY;
-
-            if (currentScroll > lastScrollTop && currentScroll > 100) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
-    }
-}
-
-// Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    new VisionInstitute();
-});                        'Solutions - Types, Concentration, Properties',
-                        'Electrochemistry - Galvanic Cells, Corrosion',
-                        'Chemical Kinetics - Rate Laws, Mechanisms',
-                        'Surface Chemistry - Adsorption, Catalysis',
-                        'General Principles of Metallurgy',
-                        'p-Block Elements - Groups 15, 16, 17, 18',
-                        'd and f Block Elements - Transition Metals',
-                        'Coordination Compounds - Werner Theory'
-                    ]
-                }
-            },
-            '9-10': {
-                title: 'Class 9 & 10 Science',
-                description: 'Strong foundation building with concept clarity',
-                duration: '2 Years',
-                subjects: 'Physics, Chemistry, Biology',
-                syllabus: {
-                    'Physics (Class 9)': [
-                        'Motion - Distance, Displacement, Velocity',
-                        'Force and Laws of Motion - Newton\'s Laws',
-                        'Gravitation - Universal Law, Weight',
-                        'Work and Energy - Kinetic, Potential Energy',
-                        'Sound - Production, Propagation, Echo',
-                        'Matter in Our Surroundings - States, Changes',
-                        'Is Matter Around Us Pure - Mixtures, Solutions',
-                        'Atoms and Molecules - Atomic Theory'
-                    ],
-                    'Physics (Class 10)': [
-                        'Light - Reflection, Refraction, Lenses',
-                        'Human Eye - Structure, Defects, Correction',
-                        'Electricity - Current, Potential, Resistance',
-                        'Magnetic Effects of Current - Electromagnets',
-                        'Sources of Energy - Conventional, Non-conventional',
-                        'Our Environment - Ecosystem, Food Chains',
-                        'Natural Resource Management - Forests, Water',
-                        'How Do Organisms Reproduce - Types, Process'
-                    ],
-                    'Chemistry (Class 9)': [
-                        'Atoms and Molecules - Laws of Chemical Combination',
-                        'Structure of Atom - Electrons, Protons, Neutrons',
-                        'Matter in Our Surroundings - Physical Properties',
-                        'Is Matter Around Us Pure - Elements, Compounds',
-                        'Improvement in Food Resources - Crop Production',
-                        'Natural Resources - Air, Water, Soil',
-                        'Diversity in Living Organisms - Classification',
-                        'Why Do We Fall Ill - Health, Disease'
-                    ],
-                    'Biology (Class 9 & 10)': [
-                        'Life Processes - Nutrition, Respiration, Transport',
-                        'Control and Coordination - Nervous, Hormonal System',
-                        'How Do Organisms Reproduce - Sexual, Asexual',
-                        'Heredity and Evolution - Inheritance, Speciation',
-                        'Our Environment - Ecosystem, Biodegradable Waste',
-                        'Management of Natural Resources - Conservation',
-                        'The Fundamental Unit of Life - Cell Structure',
-                        'Tissues - Plant, Animal Tissue Types'
-                    ]
-                }
-            }
-        };
-    }
-
-    /**
-     * Initialize theme system
-     */
-    initTheme() {
-        this.applyTheme(this.currentTheme);
-        
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => this.toggleTheme());
-        }
-    }
-
-    /**
-     * Apply theme to document
-     */
-    applyTheme(theme) {
-        document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
-        
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            const icon = themeToggle.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-        
-        localStorage.setItem('theme', theme);
-        this.currentTheme = theme;
-    }
-
-    /**
-     * Toggle between light and dark themes
-     */
-    toggleTheme() {
-        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-        this.applyTheme(newTheme);
-    }
-
-    /**
-     * Initialize loading screen
-     */
-    initLoadingScreen() {
-        window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loadingScreen');
-            if (loadingScreen) {
-                setTimeout(() => {
-                    loadingScreen.classList.add('hidden');
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }, 1000);
-            }
-        });
-    }
-
-    /**
-     * Initialize navigation functionality
-     */
-    initNavigation() {
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Active navigation highlighting
-        this.updateActiveNavigation();
-        window.addEventListener('scroll', () => this.updateActiveNavigation());
-
-        // Mobile menu auto-close
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                
-                if (navbarToggler && navbarCollapse) {
-                    if (navbarCollapse.classList.contains('show')) {
-                        navbarToggler.click();
-                    }
-                }
-            });
-        });
-    }
-
-    /**
-     * Update active navigation based on scroll position
-     */
-    updateActiveNavigation() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-            
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    /**
-     * Initialize course system
-     */
-    initCourseSystem() {
-        const courseCards = document.querySelectorAll('.course-card');
-        const courseDetails = document.getElementById('courseDetails');
-        const closeCourseDetails = document.getElementById('closeCourseDetails');
-
-        courseCards.forEach(card => {
-            const knowMoreBtn = card.querySelector('.know-more-btn');
-            if (knowMoreBtn) {
-                knowMoreBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const courseType = card.getAttribute('data-course');
-                    this.showCourseDetails(courseType);
-                });
-            }
-        });
-
-        if (closeCourseDetails) {
-            closeCourseDetails.addEventListener('click', () => {
-                this.hideCourseDetails();
-            });
-        }
-    }
-
-    /**
-     * Show course details
-     */
-    showCourseDetails(courseType) {
-        const courseData = this.courseData[courseType];
-        if (!courseData) return;
-
-        const courseDetails = document.getElementById('courseDetails');
-        const courseTitle = document.getElementById('courseTitle');
-        const courseDescription = document.getElementById('courseDescription');
-        const courseDuration = document.getElementById('courseDuration');
-        const courseSubjects = document.getElementById('courseSubjects');
-        const syllabusAccordion = document.getElementById('syllabusAccordion');
-
-        // Update course information
-        if (courseTitle) courseTitle.textContent = courseData.title;
-        if (courseDescription) courseDescription.textContent = courseData.description;
-        if (courseDuration) courseDuration.textContent = courseData.duration;
-        if (courseSubjects) courseSubjects.textContent = courseData.subjects;
-
-        // Generate syllabus accordion
-        if (syllabusAccordion) {
-            syllabusAccordion.innerHTML = '';
-            
-            Object.entries(courseData.syllabus).forEach(([subject, chapters], index) => {
-                const accordionItem = this.createAccordionItem(subject, chapters, index, courseType);
-                syllabusAccordion.appendChild(accordionItem);
-            });
-        }
-
-        // Show course details section
-        if (courseDetails) {
-            courseDetails.style.display = 'block';
-            courseDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    /**
-     * Create accordion item for syllabus
-     */
-    createAccordionItem(subject, chapters, index, courseType) {
-        const accordionItem = document.createElement('div');
-        accordionItem.className = 'accordion-item';
-
-        const accordionId = `${courseType}-${index}`;
-        const collapseId = `collapse-${accordionId}`;
-
-        accordionItem.innerHTML = `
-            <h2 class="accordion-header" id="heading-${accordionId}">
-                <button class="accordion-button ${index !== 0 ? 'collapsed' : ''}" type="button" 
-                        data-bs-toggle="collapse" data-bs-target="#${collapseId}" 
-                        aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="${collapseId}">
-                    <i class="fas fa-book me-2"></i>${subject}
-                </button>
-            </h2>
-            <div id="${collapseId}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" 
-                 aria-labelledby="heading-${accordionId}" data-bs-parent="#syllabusAccordion">
-                <div class="accordion-body">
-                    <ul class="chapter-list">
-                        ${chapters.map(chapter => `<li>${chapter}</li>`).join('')}
-                    </ul>
-                </div>
-            </div>
-        `;
-
-        return accordionItem;
-    }
-
-    /**
-     * Hide course details
-     */
-    hideCourseDetails() {
-        const courseDetails = document.getElementById('courseDetails');
-        if (courseDetails) {
-            courseDetails.style.display = 'none';
-        }
-    }
-
-    /**
-     * Initialize contact form
-     */
-    initContactForm() {
-        const contactForm = document.getElementById('contactForm');
-        if (!contactForm) return;
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const messageAlert = document.getElementById('messageAlert');
-            const alertMessage = document.getElementById('alertMessage');
-            
-            // Show loading state
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            }
-
-            try {
-                const formData = new FormData(contactForm);
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    this.showAlert('success', 'Your message has been sent successfully! We will get back to you soon.');
-                    contactForm.reset();
-                } else {
-                    throw new Error('Failed to send message');
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                this.showAlert('danger', 'Sorry, there was an error sending your message. Please try again.');
-            } finally {
-                // Reset button state
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-                }
-            }
-        });
-
-        // Form validation
-        this.initFormValidation();
-    }
-
-    /**
-     * Initialize form validation
-     */
-    initFormValidation() {
-        const form = document.getElementById('contactForm');
-        if (!form) return;
-
-        const inputs = form.querySelectorAll('input[required], textarea[required]');
-        
-        inputs.forEach(input => {
-            input.addEventListener('blur', () => this.validateField(input));
-            input.addEventListener('input', () => this.clearFieldError(input));
-        });
-    }
-
-    /**
-     * Validate individual form field
-     */
-    validateField(field) {
-        const value = field.value.trim();
-        let isValid = true;
-        let errorMessage = '';
-
-        if (!value) {
-            isValid = false;
-            errorMessage = 'This field is required';
-        } else if (field.type === 'email') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid email address';
-            }
-        } else if (field.type === 'tel' && value) {
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            if (!phoneRegex.test(value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid phone number';
-            }
-        }
-
-        this.showFieldError(field, isValid, errorMessage);
-        return isValid;
-    }
-
-    /**
-     * Show field validation error
-     */
-    showFieldError(field, isValid, errorMessage) {
-        field.classList.toggle('is-invalid', !isValid);
-        field.classList.toggle('is-valid', isValid && field.value.trim());
-
-        // Remove existing error message
-        const existingError = field.parentNode.querySelector('.invalid-feedback');
-        if (existingError) {
-            existingError.remove();
-        }
-
-        // Add error message if invalid
-        if (!isValid && errorMessage) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'invalid-feedback';
-            errorDiv.textContent = errorMessage;
-            field.parentNode.appendChild(errorDiv);
-        }
-    }
-
-    /**
-     * Clear field error
-     */
-    clearFieldError(field) {
-        field.classList.remove('is-invalid');
-        const errorDiv = field.parentNode.querySelector('.invalid-feedback');
-        if (errorDiv) {
-            errorDiv.remove();
-        }
-    }
-
-    /**
-     * Show alert message
-     */
-    showAlert(type, message) {
-        const messageAlert = document.getElementById('messageAlert');
-        const alertMessage = document.getElementById('alertMessage');
-        
-        if (messageAlert && alertMessage) {
-            messageAlert.className = `alert alert-${type}`;
-            alertMessage.textContent = message;
-            messageAlert.classList.remove('d-none');
-            
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                messageAlert.classList.add('d-none');
-            }, 5000);
-        }
-    }
-
-    /**
-     * Initialize animations
-     */
-    initAnimations() {
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.stat-card, .course-card, .success-card, .faculty-card, .feature-item')
-            .forEach(el => observer.observe(el));
-
-        // Counter animation for stats
-        this.initCounterAnimation();
-    }
-
-    /**
-     * Initialize counter animation for statistics
-     */
-    initCounterAnimation() {
-        const statNumbers = document.querySelectorAll('.stat-number');
-        
-        const animateCounter = (element) => {
-            const target = parseInt(element.textContent.replace(/\D/g, ''));
-            const increment = target / 100;
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = element.textContent.replace(/\d+/, target);
-                    clearInterval(timer);
-                } else {
-                    element.textContent = element.textContent.replace(/\d+/, Math.floor(current));
-                }
-            }, 20);
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        statNumbers.forEach(stat => observer.observe(stat));
-    }
-
-    /**
-     * Initialize scroll effects
-     */
-    initScrollEffects() {
-        let lastScroll = 0;
-        const navbar = document.querySelector('.navbar');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-
-            // Navbar hide/show on scroll
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
-
-            lastScroll = currentScroll;
-        });
-
-        // Parallax effect for hero section
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallax = scrolled * 0.5;
-                heroSection.style.transform = `translateY(${parallax}px)`;
-            });
-        }
-    }
-}
-
-// Initialize the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new VisionInstitute();
-});
-
-// Additional utility functions
-window.VisionInstitute = {
-    /**
-     * Smooth scroll to element
-     */
-    scrollTo: (elementId) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        ]
     },
-
-    /**
-     * Show course details externally
-     */
-    showCourse: (courseType) => {
-        if (window.visionApp) {
-            window.visionApp.showCourseDetails(courseType);
-        }
+    '11-12-bio-chem': {
+        id: '11-12-bio-chem',
+        title: '11th/12th Biology Chemistry',
+        description: 'Excel in board exams with our comprehensive programs covering both biology and chemistry syllabi.',
+        color: 'green',
+        subcourses: [
+            {
+                id: 'class-11-biology',
+                title: 'Class 11 Biology',
+                chapters: [
+                    { id: 'living-world', title: 'The Living World', topics: 8 },
+                    { id: 'biological-classification', title: 'Biological Classification', topics: 12 },
+                    { id: 'plant-kingdom', title: 'Plant Kingdom', topics: 15 },
+                    { id: 'animal-kingdom', title: 'Animal Kingdom', topics: 18 },
+                    { id: 'morphology-plants', title: 'Morphology of Flowering Plants', topics: 20 },
+                    { id: 'anatomy-plants', title: 'Anatomy of Flowering Plants', topics: 16 },
+                    { id: 'structural-organisation', title: 'Structural Organisation in Animals', topics: 14 },
+                    { id: 'cell-unit-life', title: 'Cell: The Unit of Life', topics: 22 },
+                    { id: 'biomolecules', title: 'Biomolecules', topics: 19 },
+                    { id: 'cell-cycle', title: 'Cell Cycle and Cell Division', topics: 17 },
+                    { id: 'transport-plants', title: 'Transport in Plants', topics: 21 },
+                    { id: 'mineral-nutrition', title: 'Mineral Nutrition', topics: 13 },
+                    { id: 'photosynthesis', title: 'Photosynthesis in Higher Plants', topics: 25 },
+                    { id: 'respiration-plants', title: 'Respiration in Plants', topics: 18 },
+                    { id: 'plant-growth', title: 'Plant Growth and Development', topics: 16 },
+                    { id: 'digestion-absorption', title: 'Digestion and Absorption', topics: 20 },
+                    { id: 'breathing-exchange', title: 'Breathing and Exchange of Gases', topics: 17 },
+                    { id: 'body-fluids', title: 'Body Fluids and Circulation', topics: 19 },
+                    { id: 'excretory-products', title: 'Excretory Products and their Elimination', topics: 15 },
+                    { id: 'locomotion-movement', title: 'Locomotion and Movement', topics: 14 },
+                    { id: 'neural-control', title: 'Neural Control and Coordination', topics: 23 },
+                    { id: 'chemical-coordination', title: 'Chemical Coordination and Integration', topics: 18 }
+                ]
+            },
+            {
+                id: 'class-11-chemistry',
+                title: 'Class 11 Chemistry',
+                chapters: [
+                    { id: 'basic-concepts-chem', title: 'Some Basic Concepts of Chemistry', topics: 15 },
+                    { id: 'structure-atom', title: 'Structure of Atom', topics: 18 },
+                    { id: 'classification-periodicity', title: 'Classification of Elements and Periodicity in Properties', topics: 20 },
+                    { id: 'chemical-bonding-structure', title: 'Chemical Bonding and Molecular Structure', topics: 25 },
+                    { id: 'states-matter', title: 'States of Matter', topics: 16 },
+                    { id: 'thermodynamics-chem', title: 'Thermodynamics', topics: 22 },
+                    { id: 'equilibrium-chem', title: 'Equilibrium', topics: 19 },
+                    { id: 'redox-reactions-chem', title: 'Redox Reactions', topics: 14 },
+                    { id: 'hydrogen-chem', title: 'Hydrogen', topics: 12 },
+                    { id: 's-block-chem', title: 'The s-Block Elements', topics: 17 },
+                    { id: 'p-block-chem', title: 'The p-Block Elements', topics: 24 },
+                    { id: 'organic-basic', title: 'Organic Chemistry - Some Basic Principles and Techniques', topics: 21 },
+                    { id: 'hydrocarbons-chem', title: 'Hydrocarbons', topics: 28 },
+                    { id: 'environmental-chem', title: 'Environmental Chemistry', topics: 13 }
+                ]
+            },
+            {
+                id: 'class-12-biology',
+                title: 'Class 12 Biology',
+                chapters: [
+                    { id: 'reproduction-organisms', title: 'Reproduction in Organisms', topics: 16 },
+                    { id: 'sexual-reproduction', title: 'Sexual Reproduction in Flowering Plants', topics: 22 },
+                    { id: 'human-reproduction', title: 'Human Reproduction', topics: 20 },
+                    { id: 'reproductive-health', title: 'Reproductive Health', topics: 15 },
+                    { id: 'heredity-variation', title: 'Principles of Inheritance and Variation', topics: 25 },
+                    { id: 'molecular-basis', title: 'Molecular Basis of Inheritance', topics: 28 },
+                    { id: 'evolution', title: 'Evolution', topics: 24 },
+                    { id: 'human-health', title: 'Human Health and Disease', topics: 21 },
+                    { id: 'food-production', title: 'Strategies for Enhancement in Food Production', topics: 18 },
+                    { id: 'microbes-welfare', title: 'Microbes in Human Welfare', topics: 17 },
+                    { id: 'biotechnology-principles', title: 'Biotechnology: Principles and Processes', topics: 19 },
+                    { id: 'biotechnology-applications', title: 'Biotechnology and its Applications', topics: 22 },
+                    { id: 'organisms-populations', title: 'Organisms and Populations', topics: 20 },
+                    { id: 'ecosystem', title: 'Ecosystem', topics: 23 },
+                    { id: 'biodiversity-conservation', title: 'Biodiversity and Conservation', topics: 18 },
+                    { id: 'environmental-issues', title: 'Environmental Issues', topics: 16 }
+                ]
+            },
+            {
+                id: 'class-12-chemistry',
+                title: 'Class 12 Chemistry',
+                chapters: [
+                    { id: 'solid-state-12', title: 'The Solid State', topics: 16 },
+                    { id: 'solutions-12', title: 'Solutions', topics: 18 },
+                    { id: 'electrochemistry-12', title: 'Electrochemistry', topics: 20 },
+                    { id: 'chemical-kinetics-12', title: 'Chemical Kinetics', topics: 17 },
+                    { id: 'surface-chemistry-12', title: 'Surface Chemistry', topics: 15 },
+                    { id: 'isolation-elements', title: 'General Principles and Processes of Isolation of Elements', topics: 14 },
+                    { id: 'p-block-12', title: 'The p-Block Elements', topics: 26 },
+                    { id: 'd-f-block-12', title: 'The d and f Block Elements', topics: 23 },
+                    { id: 'coordination-12', title: 'Coordination Compounds', topics: 19 },
+                    { id: 'haloalkanes-12', title: 'Haloalkanes and Haloarenes', topics: 21 },
+                    { id: 'alcohols-12', title: 'Alcohols, Phenols and Ethers', topics: 24 },
+                    { id: 'aldehydes-12', title: 'Aldehydes, Ketones and Carboxylic Acids', topics: 27 },
+                    { id: 'amines-12', title: 'Amines', topics: 18 },
+                    { id: 'biomolecules-12', title: 'Biomolecules', topics: 22 },
+                    { id: 'polymers-12', title: 'Polymers', topics: 16 },
+                    { id: 'chemistry-life', title: 'Chemistry in Everyday Life', topics: 14 }
+                ]
+            }
+        ]
     },
-
-    /**
-     * Toggle theme externally
-     */
-    toggleTheme: () => {
-        if (window.visionApp) {
-            window.visionApp.toggleTheme();
-        }
+    '9-10-foundation': {
+        id: '9-10-foundation',
+        title: '9th/10th Foundation Science',
+        description: 'Build strong foundations in science concepts to excel in higher studies and competitive examinations.',
+        color: 'blue',
+        subcourses: [
+            {
+                id: 'class-9-science',
+                title: 'Class 9 Science',
+                chapters: [
+                    { id: 'matter-surroundings', title: 'Matter in Our Surroundings', topics: 12 },
+                    { id: 'pure-substances', title: 'Is Matter Around Us Pure', topics: 14 },
+                    { id: 'atoms-molecules', title: 'Atoms and Molecules', topics: 16 },
+                    { id: 'structure-atom-9', title: 'Structure of the Atom', topics: 15 },
+                    { id: 'fundamental-unit', title: 'The Fundamental Unit of Life', topics: 18 },
+                    { id: 'tissues', title: 'Tissues', topics: 20 },
+                    { id: 'diversity-living', title: 'Diversity in Living Organisms', topics: 22 },
+                    { id: 'motion', title: 'Motion', topics: 17 },
+                    { id: 'force-laws', title: 'Force and Laws of Motion', topics: 19 },
+                    { id: 'gravitation', title: 'Gravitation', topics: 16 },
+                    { id: 'work-energy', title: 'Work and Energy', topics: 15 },
+                    { id: 'sound', title: 'Sound', topics: 14 },
+                    { id: 'improvement-food', title: 'Why Do We Fall Ill', topics: 13 },
+                    { id: 'natural-resources', title: 'Natural Resources', topics: 18 },
+                    { id: 'improvement-food-resources', title: 'Improvement in Food Resources', topics: 16 }
+                ]
+            },
+            {
+                id: 'class-10-science',
+                title: 'Class 10 Science',
+                chapters: [
+                    { id: 'chemical-reactions', title: 'Chemical Reactions and Equations', topics: 18 },
+                    { id: 'acids-bases', title: 'Acids, Bases and Salts', topics: 20 },
+                    { id: 'metals-nonmetals', title: 'Metals and Non-metals', topics: 22 },
+                    { id: 'carbon-compounds', title: 'Carbon and its Compounds', topics: 25 },
+                    { id: 'periodic-classification', title: 'Periodic Classification of Elements', topics: 16 },
+                    { id: 'life-processes', title: 'Life Processes', topics: 28 },
+                    { id: 'control-coordination', title: 'Control and Coordination', topics: 24 },
+                    { id: 'reproduction-10', title: 'How do Organisms Reproduce?', topics: 22 },
+                    { id: 'heredity-evolution', title: 'Heredity and Evolution', topics: 20 },
+                    { id: 'light-reflection', title: 'Light – Reflection and Refraction', topics: 19 },
+                    { id: 'human-eye', title: 'The Human Eye and Colourful World', topics: 17 },
+                    { id: 'electricity', title: 'Electricity', topics: 21 },
+                    { id: 'magnetic-effects', title: 'Magnetic Effects of Electric Current', topics: 18 },
+                    { id: 'sources-energy', title: 'Sources of Energy', topics: 15 },
+                    { id: 'environment-management', title: 'Our Environment', topics: 16 },
+                    { id: 'management-resources', title: 'Management of Natural Resources', topics: 14 }
+                ]
+            }
+        ]
     }
 };
 
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = VisionInstitute;
-                }            const tabId = this.getAttribute('data-tab');
-            
-            // Update active tab button
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Show selected tab content
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-                if (content.id === `${tabId}-tab`) {
-                    content.classList.add('active');
-                }
-            });
-        });
-    });
+// Global state
+let currentViewState = null;
+let currentTheme = localStorage.getItem('theme') || 'light';
 
-    // Accordion functionality
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
+// Success story images (replace with your actual image paths)
+const successImages = {
+    success1: 'attached_assets/IMG-20250715-WA0000_1754059476115.jpg',
+    success2: 'attached_assets/IMG-20250715-WA0001_1754059476133.jpg',
+    success3: 'attached_assets/IMG-20250715-WA0003_1754059476086.jpg'
+};
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTheme();
+    initializeNavigation();
+    initializeWelcomePopup();
+    initializeModals();
+    initializeForms();
     
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            this.classList.toggle('active');
-            const content = this.nextElementSibling;
-            content.classList.toggle('show');
-            
-            // Rotate icon
-            const icon = this.querySelector('i:last-child');
-            if (this.classList.contains('active')) {
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                icon.style.transform = 'rotate(0deg)';
+    // Show home section by default
+    showSection('home');
+});
+
+// Theme Management
+function initializeTheme() {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon();
+}
+
+function toggleTheme() {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    if (currentTheme === 'light') {
+        icon.className = 'fas fa-moon';
+    } else {
+        icon.className = 'fas fa-sun';
+    }
+}
+
+// Navigation
+function initializeNavigation() {
+    // Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+    
+    // Navigation links
+    document.querySelectorAll('.nav-link, .mobile-nav-link, .footer-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const sectionId = href.substring(1);
+                showSection(sectionId);
+                
+                // Close mobile menu
+                mobileMenu.style.display = 'none';
             }
         });
     });
+}
 
-    // Testimonial Slider
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    const dots = document.querySelectorAll('.dot');
-    let currentSlide = 0;
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
     
-    function showSlide(index) {
-        testimonialCards.forEach(card => card.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+    // Show target section
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.add('active');
         
-        testimonialCards[index].classList.add('active');
-        dots[index].classList.add('active');
-        currentSlide = index;
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+        
+        // Reset courses view if navigating away from courses
+        if (sectionId !== 'courses') {
+            showCoursesMain();
+        }
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+}
+
+// Welcome Popup
+function initializeWelcomePopup() {
+    const popup = document.getElementById('welcomePopup');
+    const closeBtn = document.getElementById('welcomeClose');
+    const getStartedBtn = document.getElementById('getStarted');
+    
+    // Show popup after 1 second if not shown before
+    if (!sessionStorage.getItem('welcomeShown')) {
+        setTimeout(() => {
+            popup.style.display = 'flex';
+            sessionStorage.setItem('welcomeShown', 'true');
+        }, 1000);
     }
     
-    document.querySelector('.slider-next').addEventListener('click', function() {
-        let nextSlide = (currentSlide + 1) % testimonialCards.length;
-        showSlide(nextSlide);
-    });
+    // Close popup
+    function closePopup() {
+        popup.style.display = 'none';
+    }
     
-    document.querySelector('.slider-prev').addEventListener('click', function() {
-        let prevSlide = (currentSlide - 1 + testimonialCards.length) % testimonialCards.length;
-        showSlide(prevSlide);
-    });
+    closeBtn.addEventListener('click', closePopup);
+    getStartedBtn.addEventListener('click', closePopup);
     
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            showSlide(index);
-        });
+    // Close on outside click
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) {
+            closePopup();
+        }
     });
-    
-    // Auto slide change every 5 seconds
-    setInterval(() => {
-        let nextSlide = (currentSlide + 1) % testimonialCards.length;
-        showSlide(nextSlide);
-    }, 5000);
+}
 
-    // Form submissions
-    document.getElementById('admission-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            class: document.getElementById('class').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
-        
-        // Simulate form submission
-        console.log('Admission Form Submitted:', formData);
-        alert(`Thank you, ${formData.name}! Your admission form has been submitted. We will contact you shortly at ${formData.phone}.`);
-        
-        // Reset form
-        this.reset();
-    });
+// Course Navigation
+function showCourseDetails(courseId) {
+    const course = courseData[courseId];
+    if (!course) return;
     
-    document.getElementById('message-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = {
-            name: document.getElementById('contact-name').value,
-            email: document.getElementById('contact-email').value,
-            subject: document.getElementById('contact-subject').value,
-            message: document.getElementById('contact-message').value
-        };
-        
-        // Simulate form submission
-        console.log('Contact Form Submitted:', formData);
-        alert(`Thank you for your message, ${formData.name}! We will respond to you at ${formData.email} soon.`);
-        
-        // Reset form
-        this.reset();
-    });
+    currentViewState = { type: 'course', courseId };
+    
+    // Hide main courses view
+    document.getElementById('coursesMain').style.display = 'none';
+    document.getElementById('coursesBackBtn').style.display = 'block';
+    
+    // Show course details
+    const courseDetails = document.getElementById('courseDetails');
+    courseDetails.style.display = 'block';
+    courseDetails.innerHTML = renderCourseSubcourses(course);
+}
 
-    // Back to Top Button
-    const backToTopButton = document.querySelector('.back-to-top');
+function showCoursesMain() {
+    currentViewState = null;
+    document.getElementById('coursesMain').style.display = 'block';
+    document.getElementById('courseDetails').style.display = 'none';
+    document.getElementById('coursesBackBtn').style.display = 'none';
+    document.getElementById('coursesBreadcrumb').style.display = 'none';
+}
+
+function renderCourseSubcourses(course) {
+    return `
+        <div class="page-transition">
+            <div class="back-button">
+                <button class="btn btn-ghost" onclick="showCoursesMain()">
+                    <i class="fas fa-arrow-left"></i> Back to All Courses
+                </button>
+            </div>
+            
+            <div class="section-header">
+                <h1>${course.title}</h1>
+                <p>Choose your class and start learning</p>
+            </div>
+            
+            <div class="courses-grid">
+                ${course.subcourses.map(subcourse => `
+                    <div class="card">
+                        <h3>${subcourse.title}</h3>
+                        <p>Comprehensive coverage of ${subcourse.chapters.length} chapters with detailed explanations and practice questions.</p>
+                        <div style="display: flex; justify-content: space-between; margin: 1rem 0; font-size: 0.875rem; color: var(--text-light);">
+                            <span>${subcourse.chapters.length} Chapters</span>
+                            <span>${subcourse.chapters.reduce((total, chapter) => total + chapter.topics, 0)} Topics</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showSubcourseChapters('${course.id}', '${subcourse.id}')">
+                            View Chapters
+                        </button>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function showSubcourseChapters(courseId, subcourseId) {
+    const course = courseData[courseId];
+    const subcourse = course.subcourses.find(sc => sc.id === subcourseId);
+    if (!subcourse) return;
     
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
+    currentViewState = { type: 'subcourse', courseId, subcourseId };
+    
+    const courseDetails = document.getElementById('courseDetails');
+    courseDetails.innerHTML = renderSubcourseChapters(course, subcourse);
+    
+    // Update breadcrumb
+    updateBreadcrumb();
+}
+
+function showChapterDetails(courseId, subcourseId, chapterId) {
+    const course = courseData[courseId];
+    const subcourse = course.subcourses.find(sc => sc.id === subcourseId);
+    const chapter = subcourse?.chapters.find(ch => ch.id === chapterId);
+    if (!chapter) return;
+    
+    currentViewState = { type: 'chapter', courseId, subcourseId, chapterId };
+    
+    const courseDetails = document.getElementById('courseDetails');
+    courseDetails.innerHTML = renderChapterDetails(course, subcourse, chapter);
+    
+    // Update breadcrumb
+    updateBreadcrumb();
+}
+
+function renderSubcourseChapters(course, subcourse) {
+    return `
+        <div class="page-transition">
+            <div class="back-button">
+                <button class="btn btn-ghost" onclick="showCourseDetails('${course.id}')">
+                    <i class="fas fa-arrow-left"></i> Back to ${course.title}
+                </button>
+            </div>
+            
+            <div class="section-header">
+                <h1>${subcourse.title}</h1>
+                <p>${subcourse.chapters.length} comprehensive chapters</p>
+            </div>
+            
+            <div class="courses-grid">
+                ${subcourse.chapters.map((chapter, index) => `
+                    <div class="card" style="cursor: pointer;" onclick="showChapterDetails('${course.id}', '${subcourse.id}', '${chapter.id}')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                            <h4 style="margin: 0; color: var(--text-color); flex: 1;">${chapter.title}</h4>
+                            <span style="background: rgba(59, 130, 246, 0.1); color: var(--primary-color); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 500;">
+                                ${index + 1}
+                            </span>
+                        </div>
+                        <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.875rem;">
+                            ${chapter.topics} topics covered with detailed explanations and practice questions
+                        </p>
+                        <div style="color: var(--primary-color); font-size: 0.875rem; display: flex; align-items: center; gap: 0.25rem;">
+                            View Details <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function renderChapterDetails(course, subcourse, chapter) {
+    return `
+        <div class="page-transition">
+            <div class="back-button">
+                <button class="btn btn-ghost" onclick="showSubcourseChapters('${course.id}', '${subcourse.id}')">
+                    <i class="fas fa-arrow-left"></i> Back to ${subcourse.title}
+                </button>
+            </div>
+            
+            <div class="card" style="max-width: none;">
+                <h1 style="margin-bottom: 1.5rem; color: var(--text-color);">${chapter.title}</h1>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                    <div>
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--text-color); margin-bottom: 1rem;">Chapter Overview</h3>
+                            <p style="color: var(--text-light); line-height: 1.6;">
+                                This chapter provides comprehensive coverage of ${chapter.title.toLowerCase()} with detailed explanations, 
+                                practical examples, and real-world applications. Students will develop a strong understanding of fundamental 
+                                concepts and their interconnections with other topics in the curriculum.
+                            </p>
+                        </div>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--text-color); margin-bottom: 1rem;">What You'll Learn</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div style="background: rgba(59, 130, 246, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.1);">
+                                    <h4 style="color: var(--text-color); margin-bottom: 0.5rem;">Conceptual Understanding</h4>
+                                    <p style="color: var(--text-light); font-size: 0.875rem; margin: 0;">Build strong foundations with clear explanations and examples</p>
+                                </div>
+                                <div style="background: rgba(16, 185, 129, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.1);">
+                                    <h4 style="color: var(--text-color); margin-bottom: 0.5rem;">Problem Solving</h4>
+                                    <p style="color: var(--text-light); font-size: 0.875rem; margin: 0;">Develop analytical skills through practice questions</p>
+                                </div>
+                                <div style="background: rgba(239, 68, 68, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.1);">
+                                    <h4 style="color: var(--text-color); margin-bottom: 0.5rem;">Exam Preparation</h4>
+                                    <p style="color: var(--text-light); font-size: 0.875rem; margin: 0;">Master exam patterns and question types</p>
+                                </div>
+                                <div style="background: rgba(245, 158, 11, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.1);">
+                                    <h4 style="color: var(--text-color); margin-bottom: 0.5rem;">Practical Application</h4>
+                                    <p style="color: var(--text-light); font-size: 0.875rem; margin: 0;">Connect theory with real-world scenarios</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 style="color: var(--text-color); margin-bottom: 1rem;">Course Outcomes</h3>
+                            <ul style="list-style: none; color: var(--text-light);">
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                    <i class="fas fa-award" style="color: var(--secondary-color); margin-top: 0.125rem; flex-shrink: 0;"></i>
+                                    <span>Master fundamental concepts and principles of ${chapter.title.toLowerCase()}</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                    <i class="fas fa-award" style="color: var(--secondary-color); margin-top: 0.125rem; flex-shrink: 0;"></i>
+                                    <span>Solve complex problems with confidence and accuracy</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                    <i class="fas fa-award" style="color: var(--secondary-color); margin-top: 0.125rem; flex-shrink: 0;"></i>
+                                    <span>Apply knowledge to new situations and real-world contexts</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                    <i class="fas fa-award" style="color: var(--secondary-color); margin-top: 0.125rem; flex-shrink: 0;"></i>
+                                    <span>Excel in board exams and competitive examinations</span>
+                                </li>
+                                <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <i class="fas fa-award" style="color: var(--secondary-color); margin-top: 0.125rem; flex-shrink: 0;"></i>
+                                    <span>Build strong foundation for advanced studies</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="card">
+                            <h4 style="color: var(--text-color); margin-bottom: 1rem;">Chapter Statistics</h4>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--text-light);">Total Topics:</span>
+                                    <span style="color: var(--text-color); font-weight: 500;">${chapter.topics}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--text-light);">Difficulty Level:</span>
+                                    <span style="color: var(--primary-color); font-weight: 500;">Intermediate</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--text-light);">Duration:</span>
+                                    <span style="color: var(--text-color); font-weight: 500;">4-6 weeks</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="color: var(--text-light);">Practice Questions:</span>
+                                    <span style="color: var(--text-color); font-weight: 500;">50+</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.75rem;">
+                                <button class="btn btn-primary" onclick="showSection('join')">
+                                    <i class="fas fa-book-open"></i> Enroll Now
+                                </button>
+                                <button class="btn" onclick="showSection('contact')" style="border: 1px solid var(--primary-color); color: var(--primary-color); background: transparent;">
+                                    Get More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function updateBreadcrumb() {
+    const breadcrumb = document.getElementById('coursesBreadcrumb');
+    if (!currentViewState || currentViewState.type === 'course') {
+        breadcrumb.style.display = 'none';
+        return;
+    }
+    
+    const course = courseData[currentViewState.courseId];
+    let breadcrumbHTML = `
+        <a onclick="showCoursesMain()" style="cursor: pointer;">Courses</a>
+        <i class="fas fa-chevron-right"></i>
+        <a onclick="showCourseDetails('${currentViewState.courseId}')" style="cursor: pointer;">${course.title}</a>
+    `;
+    
+    if (currentViewState.type === 'subcourse' || currentViewState.type === 'chapter') {
+        const subcourse = course.subcourses.find(sc => sc.id === currentViewState.subcourseId);
+        breadcrumbHTML += `
+            <i class="fas fa-chevron-right"></i>
+            <a onclick="showSubcourseChapters('${currentViewState.courseId}', '${currentViewState.subcourseId}')" style="cursor: pointer;">${subcourse.title}</a>
+        `;
+    }
+    
+    if (currentViewState.type === 'chapter') {
+        const subcourse = course.subcourses.find(sc => sc.id === currentViewState.subcourseId);
+        const chapter = subcourse?.chapters.find(ch => ch.id === currentViewState.chapterId);
+        breadcrumbHTML += `
+            <i class="fas fa-chevron-right"></i>
+            <span>${chapter.title}</span>
+        `;
+    }
+    
+    breadcrumb.innerHTML = breadcrumbHTML;
+    breadcrumb.style.display = 'flex';
+}
+
+// Success Story Modal
+function initializeModals() {
+    const modal = document.getElementById('successModal');
+    const modalClose = document.getElementById('modalClose');
+    const successImage = document.getElementById('successImage');
+    
+    // Close modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+    
+    modalClose.addEventListener('click', closeModal);
+    
+    // Close on outside click
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
         }
     });
     
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
     });
+    
+    // Global function to open modal
+    window.openSuccessModal = function(imageId) {
+        const imageSrc = successImages[imageId];
+        if (imageSrc) {
+            successImage.src = imageSrc;
+            modal.style.display = 'block';
+        }
+    };
+}
 
-    // Initialize first accordion as open
-    if (accordionHeaders.length > 0) {
-        accordionHeaders[0].classList.add('active');
-        accordionHeaders[0].nextElementSibling.classList.add('show');
-        const firstIcon = accordionHeaders[0].querySelector('i:last-child');
-        if (firstIcon) firstIcon.style.transform = 'rotate(180deg)';
+// Form Handling
+function initializeForms() {
+    // Contact form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this, 'Thank you for contacting us. We\'ll get back to you soon.');
+        });
+    }
+    
+    // Join form
+    const joinForm = document.getElementById('joinForm');
+    if (joinForm) {
+        joinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const agreement = document.getElementById('agreement');
+            if (!agreement.checked) {
+                showNotification('Please agree to the terms and conditions to proceed.', 'error');
+                return;
+            }
+            handleFormSubmit(this, 'Thank you for your application. We will contact you within 24 hours to confirm your admission.');
+        });
+    }
+}
+
+function handleFormSubmit(form, successMessage) {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    
+    // Show loading state
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual Formspree or backend logic)
+    setTimeout(() => {
+        showNotification(successMessage, 'success');
+        form.reset();
+        
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        // Reset agreement checkbox if it exists
+        const agreement = form.querySelector('#agreement');
+        if (agreement) {
+            agreement.checked = false;
+        }
+    }, 1500);
+}
+
+// Notification System
+function showNotification(message, type = 'success') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? 'var(--secondary-color)' : 'var(--accent-color)'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow-lg);
+        z-index: 2000;
+        max-width: 300px;
+        animation: slideInRight 0.3s ease;
+    `;
+    notification.textContent = message;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
+}
+
+// Add CSS for notification animations
+const notificationStyles = document.createElement('style');
+notificationStyles.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(notificationStyles);
+
+// Smooth scrolling for anchor links
+document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href').substring(1);
+        showSection(targetId);
+    }
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(e) {
+    if (e.state && e.state.section) {
+        showSection(e.state.section);
+    }
+});
+
+// Update URL when navigating
+function updateURL(sectionId) {
+    history.pushState({ section: sectionId }, '', `#${sectionId}`);
+}
+
+// Initialize URL on load
+window.addEventListener('load', function() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+        showSection(hash);
     }
 });
