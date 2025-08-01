@@ -226,8 +226,6 @@ img {
     background-color: rgb(191, 0, 255);
     color: white;
     box-shadow: var(--shadow-md);
-    border-radius: 25;
-    shape-margin: 10%;
 }
 
 .cta-button:hover {
